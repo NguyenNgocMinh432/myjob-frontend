@@ -31,9 +31,9 @@ function App() {
 
 	const [checkAdmin, setCheckAdmin] = useState();
 	useEffect(() => {
-		checkLoginApi.checkLogin().then((ok) => {
-			// setUser(ok.data.user.role);
-			let user = ok.data.user.role;
+		checkLoginApi.checkLogin().then((item, index) => {
+			// setUser(item.data.user.role);
+			let user = item.data.user.role;
 			console.log(user);
 			if (user === "admin" || user === "grant") {
 				setCheckAdmin(

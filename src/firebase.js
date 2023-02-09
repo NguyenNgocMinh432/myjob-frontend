@@ -1,13 +1,12 @@
 import firebase from "firebase";
 import "firebase/storage"
 const config = {
-    apiKey: "AIzaSyD-dyDXwc3-KSesEi6Jouf_t0jUeoQTvSg",
-    authDomain: "my-job-react-with-node.firebaseapp.com",
-    projectId: "my-job-react-with-node",
-    storageBucket: "my-job-react-with-node.appspot.com",
-    messagingSenderId: "774668644719",
-    appId: "1:774668644719:web:6ea0ad3ca69777caf5b89a",
-    measurementId: "G-J0GC6P88Z4"
+    apiKey: "AIzaSyCB3qsovZ18tPkKX7IS1_SKbyc2Mm3ikgQ",
+    authDomain: "my-jobs-dfad3.firebaseapp.com",
+    projectId: "my-jobs-dfad3",
+    storageBucket: "my-jobs-dfad3.appspot.com",
+    messagingSenderId: "331868091369",
+    appId: "1:331868091369:web:284aec709b14d0d17cd178"
 };
 
 firebase.initializeApp(config)
