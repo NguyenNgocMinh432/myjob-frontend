@@ -2,6 +2,8 @@
     padding: 6rem 5rem;
     background: url("../../images/7.jpg") repeat center;
     background-size: cover;
+    background-attachment: fixed;
+    
     &__title{
         text-transform: uppercase;
         letter-spacing: .1rem;

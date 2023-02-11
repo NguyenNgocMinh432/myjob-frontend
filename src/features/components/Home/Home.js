@@ -9,16 +9,16 @@ import ListNew from "./New/ListNew";
 import CvHome from "./CV/CvHome";
 
 export default function Home() {
-  return (
-    <div>
-      {/* <Menu /> */}
-      <Banner />
-      <ListCategories />
-      <CvHome />
-      <ListJobs />
-      <Contact />
-      <ListNew />
-      <Footer />
-    </div>
-  );
+	return (
+		<div>
+			{/* <Menu /> */}
+			<Banner />
+			<ListCategories />
+			<CvHome />
+			<ListJobs />
+			<Contact />
+			<ListNew />
+			<Footer />
+		</div>
+	);
 }

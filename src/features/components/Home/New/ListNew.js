@@ -76,7 +76,7 @@ export default function ListNew() {
                             {new3.map(data => (
                                 <div className="col-md-12" >
                                     <Link to={`/news/detailNew/${data.id}`}>
-                                        <div className="news-box">
+                                        <div className="news-box h-100">
                                             <div className="row">
                                                 <div className="col-4">
                                                     <img src={data.avatar} className="" alt="" />
