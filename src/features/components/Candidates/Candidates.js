@@ -4,11 +4,11 @@ import Breadcrumb from "./Breadcrumb/Breadcrumb";
 import ListCandidates from "./ListCandidates/ListCandidates";
 
 export default function Candidates() {
-  return (
-    <div>
-      <Breadcrumb />
-      <ListCandidates />
-      <Footer />
-    </div>
-  );
+	return (
+		<div>
+			<Breadcrumb />
+				<ListCandidates />
+			<Footer />
+		</div>
+	);
 }

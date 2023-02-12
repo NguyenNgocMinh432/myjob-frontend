@@ -49,7 +49,7 @@ function App() {
 				);
 			}
 		});
-	},[]);
+	}, []);
 
 	return (
 		<div>
@@ -104,9 +104,9 @@ function App() {
 					<Route exact path="/inforUser">
 						<InforUser />
 					</Route>
-					{/* <Route exact path="/createCv">
-            <CreateCv />
-          </Route> */}
+					<Route exact path="/createCv">
+						<CreateCv />
+					</Route>
 					<Route exact path="/detaiFormCV/:id">
 						<DetailFormCV />
 					</Route>

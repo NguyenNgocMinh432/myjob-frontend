@@ -11,7 +11,7 @@ export default function CvHome() {
 				<p>Có rất nhiều cơ hội làm việc cho bạn, hãy bắt đầu bằng việc tạo một cv thật đẹp.</p>
 			</div>
 			<div className="CvHome__button">
-				<Link to="/create-cv" className="btnCV createCv">Tạo CV</Link>
+				<Link to="/createCV" className="btnCV createCv">Tạo CV</Link>
 				<Link to="/jobs" className="btnCV searchCv">
 					Tìm việc ngay
 				</Link>

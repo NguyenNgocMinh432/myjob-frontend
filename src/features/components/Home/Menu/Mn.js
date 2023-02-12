@@ -30,7 +30,7 @@ export default function Mn(props) {
 		});
 		let idClass = pathname.slice(1);
 		let ListMenu = nav_el.current.querySelectorAll(".item");
-		nav_el.current.querySelector(".item.active").classList.remove("active");
+		nav_el.current.querySelector(".item.active")?.classList?.remove("active");
 		for (let i = 0; i < ListMenu.length; i++) {
 			if (ListMenu[i].id == idClass) {
 				ListMenu[i].classList.add("active");
@@ -96,9 +96,11 @@ export default function Mn(props) {
 					<div className="item" id="companys">
 						<Link to="/companys">Nhà tuyển dụng</Link>
 					</div>
-					{/* <div className="item">
-            <Link to="/createCv">Tạo cv</Link>
-          </div> */}
+					{user && user.role === "user" && (
+						<div className="item">
+							<Link to="/createCv">Tạo cv</Link>
+						</div>
+					)}
 					<div className="line_slide" ref={line_el}></div>
 					{user ? (
 						user.role === "admin" || user.role === "grant" ? (
