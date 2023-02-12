@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MenuNotHome from "../../MenuNotHome/MenuNotHome";
 import Footer from "../../Home/Footer/Footer";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
@@ -32,46 +32,45 @@ export default function InforCV() {
 			title: "Học vấn",
 			target: education,
 			handleValue: setEducation,
-			status: (education === "" || education ==="<p><br/></p>" ? false : true) 
+			status: (education === "" || education ==="<p><br></p>" ? false : true) 
 		},
 		{
 			stt:  3,
 			title: "Kinh nghiệm làm việc",
 			target: experience,
 			handleValue: setExperience,
-			status: (experience === "" || experience ==="<p><br/></p>" ? false : true) 
+			status: (experience === "" || experience ==="<p><br></p>" ? false : true) 
 		},
 		{
 			stt:  4,
 			title: "Hoạt động",
 			target: activate,
 			handleValue: setActivate,
-			status: (activate === "" || activate ==="<p><br/></p>" ? false : true) 
+			status: (activate === "" || activate ==="<p><br></p>" ? false : true) 
 		},
 		{
 			stt:  5,
 			title: "Chứng chỉ",
 			target: certificate,
 			handleValue: setCertificate,
-			status: (certificate === "" || certificate ==="<p><br/></p>" ? false : true) 
+			status: (certificate === "" || certificate ==="<p><br></p>" ? false : true) 
 		},
 		{
 			stt:  6,
 			title: "Dự án đã tham gia",
 			target: presenters,
 			handleValue: setPresenters,
-			status: (presenters === "" || presenters ==="<p><br/></p>" ? false : true) 
+			status: (presenters === "" || presenters ==="<p><br></p>" ? false : true) 
 		},
 		{
 			stt:  7,
 			title: "Thông tin thêm",
 			target: moreInformation,
 			handleValue: setMoreInformation,
-			status: (moreInformation === "" || moreInformation ==="<p><br/></p>" ? false : true) 
+			status: (moreInformation === "" || moreInformation ==="<p><br></p>" ? false : true) 
 		},
 	];
-	const handelOnChange = (e) => {
-		console.log(e);
+	useEffect(() => {
 		let total = 0;
 		for (let i = 0; i < listCreateCV.length; i++) {
 			if (listCreateCV[i].status === true) {
@@ -79,6 +78,9 @@ export default function InforCV() {
 			}
 		}
 		setStandard(total);
+	})
+	const handelOnChange = (e) => {
+		console.log(e);
 		// setStandard(e.stt)
 		// setValue(e);
 	};
@@ -106,6 +108,7 @@ export default function InforCV() {
 					label="huhu"
 				/> */}
 				{listCreateCV.map((item, index) => {
+					console.log("item", item);
 					return (
 						<Row className="mt-3">
 							<div className="col-lg-2 d-flex justify-content-center align-items-center">
