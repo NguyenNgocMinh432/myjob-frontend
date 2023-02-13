@@ -32,8 +32,8 @@ export default function ListJobs() {
 					{loading ? (
 						<SpinLoad />
 					) : (
-						work.rows.map((ok) => (
-							<div className="col-lg-6" data-aos="fade-up" data-aos-anchor-placement="center-center">
+						work.rows.map((ok, index) => (
+							<div className="col-lg-6" data-aos="fade-up" data-aos-anchor-placement="center-center" key={index}>
 								<div className="job__box">
 									<div className="job__tag">hot</div>
 									<div className="job__logo">

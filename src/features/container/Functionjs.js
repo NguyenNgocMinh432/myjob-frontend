@@ -17,7 +17,7 @@ export const lineSlide = () => {
 		var tabItem = $$(".item");
 		tabItem.forEach((tab, index) => {
 			tab.onclick = function () {
-				$(".item.active").classList.remove("active");
+				$(".item.active")?.classList?.remove("active");
 				line.style.width = this.offsetWidth + "px";
 				line.style.left = this.offsetLeft + "px";
 				this.classList.add("active");

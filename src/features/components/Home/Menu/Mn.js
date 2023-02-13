@@ -38,6 +38,15 @@ export default function Mn(props) {
 		}
 	}, []);
 
+	useEffect(()=> {
+		window.addEventListener("scroll", function() {
+			let getMenu = document.querySelector(".menu");
+			getMenu.classList.toggle("sticky", window.scrollY > 0);
+		})
+		// return () => {
+		// 	window.removeEventListener("scroll");
+		// }
+	})
 	const inforCompany = (
 		<Menu.Item key="1">
 			<Link to="/inforCompany">Thông tin cá nhân</Link>

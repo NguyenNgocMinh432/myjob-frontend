@@ -127,3 +127,13 @@ nav .line_slide {
 	justify-content: space-between;
 	align-items: center;
 }
+.sticky {
+	position: fixed;
+	background: linear-gradient(109.6deg, rgba(0, 0, 0, 0.93) 11.2%, rgb(63, 61, 61) 78.9%);
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	transition: 0.6s;
+}

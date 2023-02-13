@@ -115,7 +115,7 @@ export default function InforCV() {
 				/> */}
 				{listCreateCV.map((item, index) => {
 					return (
-						<Row className="mt-3">
+						<Row className="mt-3" key={index}>
 							<div className="col-lg-2 d-flex justify-content-center align-items-center">
 								<input type="radio" name="" checked = {item.status === true && true}/>
 								<span className="p-2 fw-bold">{`${standard}/${listCreateCV.length}`}</span>

@@ -31,10 +31,10 @@ function App() {
 
 	const [checkAdmin, setCheckAdmin] = useState();
 	useEffect(() => {
+	/* Checking if the user is admin or not. */
 		checkLoginApi.checkLogin().then((item, index) => {
 			// setUser(item.data.user.role);
 			let user = item.data.user.role;
-			console.log(user);
 			if (user === "admin" || user === "grant") {
 				setCheckAdmin(
 					<Route path="/admin">
@@ -65,8 +65,8 @@ function App() {
 						<Home />
 					</Route>
 					{/* <Route path="/admin">
-            <Ladmin />
-          </Route> */}
+						<Ladmin />
+					</Route> */}
 					{checkAdmin}
 					<Route exact path="/jobs">
 						<Jobs />

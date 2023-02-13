@@ -37,8 +37,8 @@ export default function News() {
 								<Spin className="mt-5" />
 							</div>
 						) : (
-							news.rows.map((data) => (
-								<div className="col-md-4 d-flex">
+							news.rows.map((data, index) => (
+								<div className="col-md-4 d-flex" key={index}>
 									<div className="new__box">
 										<div className="new__box__img">
 											<img src={data.avatar} alt="" />

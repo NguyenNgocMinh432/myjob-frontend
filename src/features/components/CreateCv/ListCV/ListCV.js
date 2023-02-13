@@ -46,8 +46,8 @@ export default function ListCV({ data, loading }) {
 							{loading ? (
 								<SpinLoad />
 							) : (
-								data.rows.map((ok) => (
-									<div className="col-md-4 d-flex">
+								data.rows.map((ok, index) => (
+									<div className="col-md-4 d-flex" key={index}>
 										<Link to={`/detaiFormCV/${ok.id}`}>
 											<div className="box">
 												<div className="box-img">

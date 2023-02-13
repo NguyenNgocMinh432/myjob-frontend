@@ -34,8 +34,8 @@ export default function ListCandidates() {
 					{loading ? (
 						<SpinLoad />
 					) : (
-						users.rows.map((data) => (
-							<div className="col-md-3 ">
+						users.rows.map((data, index) => (
+							<div className="col-md-3 " key={index}>
 								<div className="candidate__box">
 									<div className="candidate__box__img">
 										<img src={data.avatar} alt="" />

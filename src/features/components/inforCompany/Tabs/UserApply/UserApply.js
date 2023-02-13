@@ -29,8 +29,8 @@ export default function UserApply({ id }) {
 				{!data ? (
 					<SpinLoad />
 				) : (
-					data.map((ok) => (
-						<div className="content___box">
+					data.map((ok, index) => (
+						<div className="content___box" key={index}>
 							<div className="content___box--title">
 								<Link to={`jobs/work/${ok.id}`} className="text-dark">
 									{ok.name}
@@ -42,8 +42,8 @@ export default function UserApply({ id }) {
 									{ok.workapply2.length === 0 ? (
 										<p className="text-danger">Chưa có ứng viên ứng tuyển</p>
 									) : (
-										ok.workapply2.map((oki) => (
-											<div className="col-md-12">
+										ok.workapply2.map((oki, index) => (
+											<div className="col-md-12" key={index}>
 												<div className="d-flex">
 													<div className="content___box---user---img">
 														<img src={oki.avatar} title={oki.name} width={150} />
