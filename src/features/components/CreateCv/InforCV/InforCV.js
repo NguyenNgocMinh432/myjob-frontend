@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Button, Radio, Space, Divider } from 'antd';
+
 import MenuNotHome from "../../MenuNotHome/MenuNotHome";
 import Footer from "../../Home/Footer/Footer";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
@@ -81,9 +83,13 @@ export default function InforCV() {
 	})
 	const handelOnChange = (e) => {
 		console.log(e);
+		if(e.e === "<p><br></p>" || e.e === '') {
+			setStandard(standard - 1);
+		}
 		// setStandard(e.stt)
 		// setValue(e);
 	};
+	console.log("standard", standard);
 	return (
 		<div>
 			{/* <MenuNotHome /> */}
@@ -108,12 +114,11 @@ export default function InforCV() {
 					label="huhu"
 				/> */}
 				{listCreateCV.map((item, index) => {
-					console.log("item", item);
 					return (
 						<Row className="mt-3">
 							<div className="col-lg-2 d-flex justify-content-center align-items-center">
 								<input type="radio" name="" checked = {item.status === true && true}/>
-								<span className="p-2 fw-bold">{`${item.status === true ? standard : 0}/${listCreateCV.length}`}</span>
+								<span className="p-2 fw-bold">{`${standard}/${listCreateCV.length}`}</span>
 							</div>
 							<div className="col-lg-10">
 								<EditorCV
@@ -128,6 +133,9 @@ export default function InforCV() {
 						</Row>
 					);
 				})}
+				<div className="w-100 d-flex justify-content-end mt-3 mb-3">
+					<Button type="primary">Thêm</Button>
+				</div>
 			</div>
 			<Footer />
 		</div>
