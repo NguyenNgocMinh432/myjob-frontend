@@ -24,7 +24,7 @@ import queryString from 'query-string';
 //     })
 // }
 const axiosClient = axios.create({
-    baseURL: `http://localhost:666`,
+    baseURL: `http://localhost:666/`,
     headers: {
         'content-type': "application/json",
     },
