@@ -54,7 +54,7 @@ export default function ListCV({ data, loading }) {
 													<img src={ok.avatar} alt="" />
 												</div>
 												<div className="box-tag">
-													{ok.Tags.map((oki) => (
+													{ok?.tags.map((oki) => (
 														<p>{oki.name}</p>
 													))}
 												</div>

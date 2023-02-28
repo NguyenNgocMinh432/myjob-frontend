@@ -46,20 +46,20 @@ export default function Job({ searchData, onTime, onAmout, amount, time }) {
 									<div className="job__box" key={index}>
 										<div className="job__tag">hot</div>
 										<div className="job__logo">
-											<img src={data.Company.avatar} alt="" />
+											<img src={data?.company?.avatar} alt="" />
 										</div>
 										<div className="job__content">
 											<div className="job__title">
 												<Link to={`/jobs/work/${data.id}`}>
-													<h4 className="jobTitle" title={data.name}>
-														{data.name}
+													<h4 className="jobTitle" title={data?.name}>
+														{data?.name}
 													</h4>
 												</Link>
 											</div>
 											<div className="job__nameCompany">
 												<Link to={`/jobs/work/${data.id}`}>
 													{" "}
-													<span>{data.Company.name}</span>
+													<span>{data?.company.name}</span>
 												</Link>
 											</div>
 											<div className="job__detail">
@@ -67,13 +67,13 @@ export default function Job({ searchData, onTime, onAmout, amount, time }) {
 													<div className="job__icon">
 														<i className="fas fa-map-marker-alt"></i>
 													</div>
-													<span>{data.address}</span>
+													<span>{data?.address}</span>
 												</div>
 												<div className="job__detail--deadline outSize outSize">
 													<div className="job__icon">
 														<i className="far fa-clock"></i>
 													</div>
-													<span>{formatDateWork(data.dealtime)}</span>
+													<span>{formatDateWork(data?.dealtime)}</span>
 												</div>
 												<div className="job__detail--salary">
 													<div className="job__icon">
@@ -93,20 +93,20 @@ export default function Job({ searchData, onTime, onAmout, amount, time }) {
 								<div className="job__box" key={index}>
 									<div className="job__tag">hot</div>
 									<div className="job__logo">
-										<img src={data.Company.avatar} alt="" />
+										<img src={data?.company.avatar} alt="" />
 									</div>
 									<div className="job__content">
 										<div className="job__title">
 											<Link to={`/jobs/work/${data.id}`}>
-												<h4 className="jobTitle" title={data.name}>
-													{data.name}
+												<h4 className="jobTitle" title={data?.name}>
+													{data?.name}
 												</h4>
 											</Link>
 										</div>
 										<div className="job__nameCompany">
 											<Link to={`/jobs/work/${data.id}`}>
 												{" "}
-												<span>{data.Company.name}</span>
+												<span>{data?.company.name}</span>
 											</Link>
 										</div>
 										<div className="job__detail">
@@ -114,13 +114,13 @@ export default function Job({ searchData, onTime, onAmout, amount, time }) {
 												<div className="job__icon">
 													<i className="fas fa-map-marker-alt"></i>
 												</div>
-												<span>{data.address}</span>
+												<span>{data?.address}</span>
 											</div>
 											<div className="job__detail--deadline outSize outSize">
 												<div className="job__icon">
 													<i className="far fa-clock"></i>
 												</div>
-												<span>{formatDateWork(data.dealtime)}</span>
+												<span>{formatDateWork(data?.dealtime)}</span>
 											</div>
 											<div className="job__detail--salary">
 												<div className="job__icon">

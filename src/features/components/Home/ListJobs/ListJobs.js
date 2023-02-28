@@ -37,7 +37,7 @@ export default function ListJobs() {
 								<div className="job__box">
 									<div className="job__tag">hot</div>
 									<div className="job__logo">
-										<img src={ok.Company.avatar} alt="" />
+										<img src={ok?.company?.avatar} alt="" />
 									</div>
 									<div className="job__content">
 										<div className="job__title">
@@ -47,7 +47,7 @@ export default function ListJobs() {
 										</div>
 										<div className="job__nameCompany">
 											<Link to="/jobs/work/1">
-												<span>{ok.Company.name}</span>
+												<span>{ok?.company?.name}</span>
 											</Link>
 										</div>
 										<div className="job__detail">

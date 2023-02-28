@@ -63,7 +63,7 @@ export default function Jobs({ id, heard, hident }) {
 									)}
 									<div className="job__tag">hot</div>
 									<div className="job__logo">
-										<img src={ok.Company.avatar} alt="" />
+										<img src={ok?.company.avatar} alt="" />
 									</div>
 									<div className="job__content">
 										<div className="job__title">
@@ -73,7 +73,7 @@ export default function Jobs({ id, heard, hident }) {
 										</div>
 										<div className="job__nameCompany">
 											<Link to={`/jobs/work/${ok.id}`}>
-												<span>{ok.Company.name}</span>
+												<span>{ok?.company.name}</span>
 											</Link>
 										</div>
 										<div className="job__detail">
