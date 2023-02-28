@@ -41,7 +41,7 @@ export default function Mn(props) {
 	useEffect(()=> {
 		window.addEventListener("scroll", function() {
 			let getMenu = document.querySelector(".menu");
-			getMenu.classList.toggle("sticky", window.scrollY > 0);
+			getMenu?.classList.toggle("sticky", window.scrollY > 0);
 		})
 		// return () => {
 		// 	window.removeEventListener("scroll");
