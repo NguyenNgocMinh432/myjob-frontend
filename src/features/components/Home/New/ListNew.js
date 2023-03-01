@@ -3,7 +3,15 @@ import { Link } from "react-router-dom";
 import "../../../scss/Home/ListNew.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { newData } from "../../../admin/Slice/newSlice";
+import Slider from "react-slick";
 export default function ListNew() {
+	var settings = {
+		infinite: true,
+		speed: 500,
+		slidesToShow: 2,
+		slidesToScroll: 1,
+	};
+
 	const dispatch = useDispatch();
 	const actionResult = async (page) => {
 		await dispatch(newData(page));
@@ -15,6 +23,7 @@ export default function ListNew() {
 	const new1 = [];
 	const new2 = [];
 	const new3 = [];
+	console.log(news);
 	if (news) {
 		for (let i = 0; i <= news.rows.length; i++) {
 			if (new1.length < 2) {
@@ -37,7 +46,32 @@ export default function ListNew() {
 				<div className="heading__hr"></div>
 			</div>
 			<div className="container">
-				<div className="row mb-4">
+				<div style={{
+					marginBottom: "50px"
+				}}>
+					<Slider {...settings}>
+						{news?.rows.map((data, index) => (
+							<div className="col-sm-6 mb-10 " key={index}>
+								<Link to={`/news/detailNew/${data.id}`}>
+									<div className="news-box items__content">
+										<div className="img-new">
+											<img src={data.avatar} alt="" />
+										</div>
+										<div className=" p-2">
+											<h4 className="fw-bold">{data.name}</h4>
+										</div>
+										<div className="content-news">
+											<p className="text-justify p-2">
+												{data.samary}
+											</p>
+										</div>
+									</div>
+								</Link>
+							</div>
+						))}
+					</Slider>
+				</div>
+				{/* <div className="row mb-4">
 					{new1.map((data, index) => (
 						<div className="col-sm-6 mb-3" key={index}>
 							<Link to={`/news/detailNew/${data.id}`}>
@@ -55,20 +89,26 @@ export default function ListNew() {
 							</Link>
 						</div>
 					))}
-				</div>
+				</div> */}
 				<div className="row">
-					{new2.map((data,index) => (
+					{new2.map((data, index) => (
 						<div className="col-md-4 col-sm-6 mb-3" key={index}>
 							<Link to={`/news/detailNew/${data.id}`}>
-								<div className="news-box">
+								<div className="news-box" style={{maxHeight: "350px"}}>
 									<div style={{ height: "190px" }}>
-										<img src={data.avatar} className="w-100 h-100" alt="" />
+										<img
+											src={data.avatar}
+											className="w-100 h-100"
+											alt=""
+										/>
 									</div>
 									<div className="heading pt-1 pb-1 pl-2 pr-2">
 										<strong>{data.name}</strong>
 									</div>
 									<div className="content-news">
-										<p className="text-justify">{data.samary}</p>
+										<p className="text-justify">
+											{data.samary}
+										</p>
 									</div>
 								</div>
 							</Link>
@@ -80,13 +120,25 @@ export default function ListNew() {
 							{new3.map((data, index) => (
 								<div className="col-md-12" key={index}>
 									<Link to={`/news/detailNew/${data.id}`}>
-										<div className="news-box h-100">
-											<div className="row">
+										<div className="news-box h-100" >
+											<div className="row" style={{
+											height: "75px"
+										}}>
 												<div className="col-4">
-													<img src={data.avatar} className="" alt="" />
+													<img
+														src={data.avatar}
+														className=""
+														alt=""
+													/>
 												</div>
 												<div className="col-8">
-													<strong style={{ fontSize: ".9rem" }}>{data.name}</strong>
+													<strong
+														style={{
+															fontSize: ".9rem",
+														}}
+													>
+														{data.name}
+													</strong>
 												</div>
 											</div>
 										</div>

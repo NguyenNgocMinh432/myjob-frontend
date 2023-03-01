@@ -21,6 +21,8 @@
 		"react-render-html": "^0.6.0",
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "4.0.3",
+		"react-slick": "^0.29.0",
+		"slick-carousel": "^1.8.1",
 		"sub-vn": "0.0.2",
 		"yup": "^0.32.9"
 	},
