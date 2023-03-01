@@ -22,7 +22,7 @@ export default function RegisterUser() {
     const onSubmit = (data) => {
         const asUserRole = [{ roleId: 2 }]
         const dataUser = { address, banner, avatar, name: data.name, email: data.userName, password: data.password, asUserRole, status: 1 }
-        const link = "http://localhost:666/users"
+        const link = "http://13.229.180.153/users"
         axios.post(link, dataUser).then(ok => {
             if (ok.data.data === "email đã tồn tại!") {
                 message.info("Email đã được đăng ký!")

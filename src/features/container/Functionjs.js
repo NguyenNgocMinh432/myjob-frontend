@@ -129,7 +129,7 @@ export const GetCategoryHome = (e) => {
 			data.push({
 				name: list[i].name,
 				icon: list[i].icon,
-				length: list[i].works.length,
+				length: list[i]?.works?.length,
 			});
 		}
 		data.sort((a, b) => {

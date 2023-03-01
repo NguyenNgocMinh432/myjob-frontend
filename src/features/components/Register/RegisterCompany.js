@@ -28,7 +28,7 @@ export default function RegisterCompany() {
 
     const onSubmit = (data) => {
         const dataCompany = { address, banner, avatar, name: data.name, email: data.userName, password: data.password, status: 0 }
-        const link = "http://localhost:666/companys"
+        const link = "http://13.229.180.153/companys"
         axios.post(link, dataCompany).then(ok => {
             if (ok.data.data === "email đã tồn tại!") {
                 message.info("Email đã được đăng ký!")
