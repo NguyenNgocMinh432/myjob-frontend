@@ -21,7 +21,7 @@ export default function ListJobs() {
 			<div className="heading">
 				<div className="heading__title">
 					<h3>
-						<Link to="/jobs">Công việc</Link>
+						<Link to="/jobs" style={{marginRight: '5px'}}>Công việc</Link>
 						nổi bật
 					</h3>
 				</div>

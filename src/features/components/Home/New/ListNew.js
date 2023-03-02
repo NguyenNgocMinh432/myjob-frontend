@@ -4,12 +4,38 @@ import "../../../scss/Home/ListNew.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { newData } from "../../../admin/Slice/newSlice";
 import Slider from "react-slick";
+
+function SampleNextArrow(props) {
+	const { className, style, onClick } = props;
+	return (
+		<div
+			className={className}
+			style={{ ...style, display: "block", background: "red" }}
+			onClick={onClick}
+		/>
+	);
+}
+
+function SamplePrevArrow(props) {
+	const { className, style, onClick } = props;
+	return (
+		<div
+			className={className}
+			style={{ ...style, display: "block", background: "green" }}
+			onClick={onClick}
+		/>
+	);
+}
+
 export default function ListNew() {
 	var settings = {
 		infinite: true,
 		speed: 500,
 		slidesToShow: 2,
 		slidesToScroll: 1,
+		autoplay: true,
+		nextArrow: <SampleNextArrow  />,
+		prevArrow: <SamplePrevArrow />,
 	};
 
 	const dispatch = useDispatch();
@@ -46,9 +72,11 @@ export default function ListNew() {
 				<div className="heading__hr"></div>
 			</div>
 			<div className="container">
-				<div style={{
-					marginBottom: "50px"
-				}}>
+				<div
+					style={{
+						marginBottom: "50px",
+					}}
+				>
 					<Slider {...settings}>
 						{news?.rows.map((data, index) => (
 							<div className="col-sm-6 mb-10 " key={index}>
@@ -58,7 +86,9 @@ export default function ListNew() {
 											<img src={data.avatar} alt="" />
 										</div>
 										<div className=" p-2">
-											<h4 className="fw-bold">{data.name}</h4>
+											<h4 className="fw-bold">
+												{data.name}
+											</h4>
 										</div>
 										<div className="content-news">
 											<p className="text-justify p-2">
@@ -94,7 +124,10 @@ export default function ListNew() {
 					{new2.map((data, index) => (
 						<div className="col-md-4 col-sm-6 mb-3" key={index}>
 							<Link to={`/news/detailNew/${data.id}`}>
-								<div className="news-box" style={{maxHeight: "350px"}}>
+								<div
+									className="news-box"
+									style={{ maxHeight: "350px" }}
+								>
 									<div style={{ height: "190px" }}>
 										<img
 											src={data.avatar}
@@ -120,10 +153,13 @@ export default function ListNew() {
 							{new3.map((data, index) => (
 								<div className="col-md-12" key={index}>
 									<Link to={`/news/detailNew/${data.id}`}>
-										<div className="news-box h-100" >
-											<div className="row" style={{
-											height: "75px"
-										}}>
+										<div className="news-box h-100">
+											<div
+												className="row"
+												style={{
+													height: "75px",
+												}}
+											>
 												<div className="col-4">
 													<img
 														src={data.avatar}

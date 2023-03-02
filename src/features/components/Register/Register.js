@@ -26,7 +26,7 @@ export default function Register() {
 	};
 	return (
 		<div className="register">
-			<div className="register__title">Việc làm tốt</div>
+			<div className="register__title">MY JOBS</div>
 			<div className="register__box">
 				<div className="line__register"></div>
 				<div className="register__box__left">
@@ -44,7 +44,7 @@ export default function Register() {
 					<div className="right">
 						<div className="register__box__right__text">Hoặc đăng nhập với</div>
 						<button className="fb">Đăng nhập với facebook</button>
-						<button className="in">Đăng nhập với instagram</button>
+						<button className="in">Đăng nhập với google</button>
 						<div className="register__box__right__text">
 							Bạn đã có tài khoản? <Link to="/login">Đăng nhập</Link> ở đây
 						</div>
