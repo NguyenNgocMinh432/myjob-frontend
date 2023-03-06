@@ -9,6 +9,7 @@ import "../../scss/Login/Login.scss";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import loginApi from "../../../api/loginApi";
+import { handleLoginWithFacebook } from "../../utils/handleLoginFacebook";
 export default function Login() {
 	// const provider = new GoogleAuthProvider();
 	const provider = new firebase.auth.GoogleAuthProvider();
@@ -67,6 +68,7 @@ export default function Login() {
 			.auth()
 			.signInWithPopup(provider)
 			.then((result) => {
+				console.log("result", result)
 				/** @type {firebase.auth.OAuthCredential} */
 				var credential = result.credential;
 
@@ -77,6 +79,9 @@ export default function Login() {
 				// IdP data available in result.additionalUserInfo.profile.
 				// ...
                 console.log(user);
+				if (user.displayName) {
+					history.push("/");
+				}
 			})
 			.catch((error) => {
 				// Handle Errors here.
@@ -90,6 +95,7 @@ export default function Login() {
 				// ...
 			});
 	};
+
 	return (
 		<div className="login">
 			<div className="login__title">
@@ -132,7 +138,7 @@ export default function Login() {
 						<div className="login__box__right__text">
 							Hoặc đăng nhập với
 						</div>
-						<button className="fb">Đăng nhập với facebook</button>
+						<button className="fb" onClick={handleLoginWithFacebook}>Đăng nhập với facebook</button>
 						<button className="in" onClick={handleLoginWithGoogle}>
 							Đăng nhập với google
 						</button>

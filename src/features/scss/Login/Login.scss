@@ -1,5 +1,6 @@
 @import "../Variable.scss";
 @import url("https://fonts.googleapis.com/css2?family=Smokum&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Smokum&display=swap');
 .login {
 	display: flex;
 	flex-direction: column;
@@ -119,7 +120,7 @@
 .login__title {
 	h2 {
 		font-weight: bold;
-		font-family: "Smokum";
+		font-family: "Lobster";
 	}
 }
 @media (max-width: 900px) {
