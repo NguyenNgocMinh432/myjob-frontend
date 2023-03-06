@@ -111,7 +111,7 @@ export default function CheckCompany() {
 											}}
 											icon={<QuestionCircleOutlined style={{ color: "red" }} />}
 										>
-											<Link>
+											<Link to="">
 												<i className="far fa-trash-alt"></i>
 											</Link>
 										</Popconfirm>

@@ -2,7 +2,12 @@ import { Avatar, Dropdown, Menu } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import checkLoginApi from "../../../../api/checkLogin";
-import { checkBar, funLine, lineSlide, openMenu } from "../../../container/Functionjs";
+import {
+	checkBar,
+	funLine,
+	lineSlide,
+	openMenu,
+} from "../../../container/Functionjs";
 import logo from "../../../images/logossss.png";
 import "../../../scss/Home/Menu.scss";
 export default function Mn(props) {
@@ -30,7 +35,9 @@ export default function Mn(props) {
 		});
 		let idClass = pathname.slice(1);
 		let ListMenu = nav_el.current.querySelectorAll(".item");
-		nav_el.current.querySelector(".item.active")?.classList?.remove("active");
+		nav_el.current
+			.querySelector(".item.active")
+			?.classList?.remove("active");
 		for (let i = 0; i < ListMenu.length; i++) {
 			if (ListMenu[i].id == idClass) {
 				ListMenu[i].classList.add("active");
@@ -38,15 +45,15 @@ export default function Mn(props) {
 		}
 	}, []);
 
-	useEffect(()=> {
-		window.addEventListener("scroll", function() {
+	useEffect(() => {
+		window.addEventListener("scroll", function () {
 			let getMenu = document.querySelector(".menu");
 			getMenu?.classList.toggle("sticky", window.scrollY > 0);
-		})
+		});
 		// return () => {
 		// 	window.removeEventListener("scroll");
 		// }
-	})
+	});
 	const inforCompany = (
 		<Menu.Item key="1">
 			<Link to="/inforCompany">Thông tin cá nhân</Link>
@@ -96,9 +103,20 @@ export default function Mn(props) {
 					<div className="item active" id="">
 						<Link to="/">Trang chủ</Link>
 					</div>
-					<div className="item" id="candidates">
-						<Link to="/candidates">Ứng viên</Link>
-					</div>
+					{/* Là tài khoản công ty hoặc admin mới xem được CV */}
+
+					{user ? (
+						user.role === "admin" || user.role === "grant" ? (
+							<div className="item" id="candidates">
+								<Link to="/candidates">Ứng viên</Link>
+							</div>
+						) : (
+							""
+						)
+					) : (
+						""
+					)}
+
 					<div className="item" id="jobs">
 						<Link to="/jobs">Việc làm</Link>
 					</div>
@@ -124,7 +142,10 @@ export default function Mn(props) {
 					)}
 					<Dropdown overlay={ss} trigger={["click"]}>
 						<span className="nav-link">
-							<Avatar size="small" src={user ? user.avatar : imgDefault} />
+							<Avatar
+								size="small"
+								src={user ? user.avatar : imgDefault}
+							/>
 						</span>
 					</Dropdown>
 				</nav>

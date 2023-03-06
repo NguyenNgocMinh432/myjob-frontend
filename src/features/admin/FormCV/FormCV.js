@@ -24,7 +24,9 @@ export default function FormCv() {
 	const formCV = useSelector((state) => state.formCVs.formCV.data);
 	const loading = useSelector((state) => state.formCVs.loading);
 	const dispatch = useDispatch();
-	const [state, setState] = useState({ page: localStorage.getItem("pageFormCV") || 1 });
+	const [state, setState] = useState({
+		page: localStorage.getItem("pageFormCV") || 1,
+	});
 	const { page } = state;
 	const actionResult = async (page) => {
 		await dispatch(formCVData(page));
@@ -91,14 +93,25 @@ export default function FormCv() {
 									<div className="action">
 										{ok.status === 1 ? (
 											<Link
+												to=""
 												onClick={() => {
-													handleStatus(ok.status, ok.id);
+													handleStatus(
+														ok.status,
+														ok.id
+													);
 												}}
 											>
 												<i className="far fa-thumbs-up "></i>
 											</Link>
 										) : (
-											<Link onClick={() => handleStatus(ok.status, ok.id)}>
+											<Link
+												onClick={() =>
+													handleStatus(
+														ok.status,
+														ok.id
+													)
+												}
+											>
 												<i className="far fa-thumbs-down "></i>
 											</Link>
 										)}
@@ -111,9 +124,15 @@ export default function FormCv() {
 											onConfirm={() => {
 												hangdleEdit(ok.id);
 											}}
-											icon={<QuestionCircleOutlined style={{ color: "green" }} />}
+											icon={
+												<QuestionCircleOutlined
+													style={{ color: "green" }}
+												/>
+											}
 										>
-											<Link>
+											<Link
+												to=""
+											>
 												<i className="far fa-edit mr-4"></i>
 											</Link>
 										</Popconfirm>
@@ -122,7 +141,11 @@ export default function FormCv() {
 											onConfirm={() => {
 												hangdleDelete(ok.id);
 											}}
-											icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+											icon={
+												<QuestionCircleOutlined
+													style={{ color: "red" }}
+												/>
+											}
 										>
 											<Link>
 												<i className="far fa-trash-alt"></i>
@@ -132,7 +155,11 @@ export default function FormCv() {
 								),
 							}))}
 						/>
-						<Pagination defaultCurrent={page} onChange={onChangePage} total={formCV.count} />
+						<Pagination
+							defaultCurrent={page}
+							onChange={onChangePage}
+							total={formCV.count}
+						/>
 					</div>
 				)}
 			</div>

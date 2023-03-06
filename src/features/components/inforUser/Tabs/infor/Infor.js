@@ -69,15 +69,15 @@ export default function Infor({ id }) {
 	};
 	const formatTag = (e) => {
 		let tag = [];
-		for (let i = 0; i < e.length; i++) {
-			tag.push(`${e[i].id}`);
+		for (let i = 0; i < e?.length; i++) {
+			tag.push(`${e[i]?.id}`);
 		}
 		return tag;
 	};
 	const formatTypeOfWork = (e) => {
 		let TypeOfWork = [];
-		for (let i = 0; i < e.length; i++) {
-			TypeOfWork.push(e[i].id);
+		for (let i = 0; i < e?.length; i++) {
+			TypeOfWork.push(e[i]?.id);
 		}
 		return TypeOfWork;
 	};

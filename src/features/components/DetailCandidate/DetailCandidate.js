@@ -9,35 +9,35 @@ import userApi from "../../../api/userApi";
 import SpinLoad from "../Spin/Spin";
 
 export default function DetailCandidate() {
-  const { id } = useParams();
-  const [data, setData] = useState();
-  const getApi = async () => {
-    return await userApi.getOne(id).then((data) => {
-      setData(data);
-    });
-  };
-  useEffect(() => {
-    getApi();
-    window.scrollTo(0, 0);
-  }, []);
-  return (
-    <div>
-      {/* <Menu /> */}
-      {data ? (
-        <div>
-          <Breadcrumb name={data.name} />
-          <BannerCandidate
-            avatar={data.avatar}
-            banner={data.banner}
-            name={data.name}
-            address={data.address}
-          />
-          <CandidateContent data={data} />
-        </div>
-      ) : (
-        <SpinLoad />
-      )}
-      <Footer />
-    </div>
-  );
+	const { id } = useParams();
+	const [data, setData] = useState();
+	const getApi = async () => {
+		return await userApi.getOne(id).then((data) => {
+			setData(data);
+		});
+	};
+	useEffect(() => {
+		getApi();
+		window.scrollTo(0, 0);
+	}, []);
+	return (
+		<div>
+			{/* <Menu /> */}
+			{data ? (
+				<div>
+					<Breadcrumb name={data.name} />
+					<BannerCandidate
+						avatar={data.avatar}
+						banner={data.banner}
+						name={data.name}
+						address={data.address}
+					/>
+					<CandidateContent data={data} />
+				</div>
+			) : (
+				<SpinLoad />
+			)}
+			<Footer />
+		</div>
+	);
 }

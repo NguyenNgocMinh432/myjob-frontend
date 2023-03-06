@@ -81,6 +81,7 @@ export default function Work() {
 									<div className="action">
 										{ok.status === 1 ? (
 											<Link
+												to=""
 												onClick={() => {
 													handleStatus(ok.status, ok.id);
 												}}

@@ -96,6 +96,7 @@ export default function New() {
 									<div className="action">
 										{ok.status === 1 ? (
 											<Link
+												to=""
 												onClick={() => {
 													handleStatus(ok.status, ok.id);
 												}}
