@@ -79,9 +79,13 @@ export default function Mn(props) {
 		"https://1.bp.blogspot.com/-m3UYn4_PEms/Xnch6mOTHJI/AAAAAAAAZkE/GuepXW9p7MA6l81zSCnmNaFFhfQASQhowCLcBGAsYHQ/s1600/Cach-Lam-Avatar-Dang-Hot%2B%25281%2529.jpg";
 	const ss = (
 		<Menu>
-			<Menu.Item key="0">
-				<Link to="/login">Đăng nhập</Link>
-			</Menu.Item>
+			{!user ? (
+				<Menu.Item key="0">
+					<Link to="/login">Đăng nhập</Link>
+				</Menu.Item>
+			) : (
+				""
+			)}
 			{user ? (user.type === "company" ? inforCompany : inforUser) : ""}
 			{user ? logOut : ""}
 		</Menu>
