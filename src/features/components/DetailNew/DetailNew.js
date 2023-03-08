@@ -19,6 +19,7 @@ export default function DetailNew() {
 		}
 		window.scrollTo(0, 0);
 	}, []);
+	console.log("news", news);
 	return (
 		<div>
 			{!news ? (
@@ -27,7 +28,7 @@ export default function DetailNew() {
 				<div>
 					{/* <Menu /> */}
 					<Breadcrumb name={news.name} />
-					<BannerNew img={news.avatar} title={news.name} tags={news.Tags} />
+					<BannerNew img={news.avatar} title={news.name} tags={news.tags} />
 					<New content={news.content} />
 					<Footer />
 				</div>
