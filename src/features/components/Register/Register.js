@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../../scss/Register/Register.scss";
+import { handleLoginWithFacebook } from "../../utils/handleLoginFacebook";
+import { handleLoginWithGoogle } from "../../utils/handleLoginGoogle";
 import RegisterCompany from "./RegisterCompany";
 import RegisterUser from "./RegisterUser";
 export default function Register() {
 	const UserEl = useRef(null);
 	const CompanyEl = useRef(null);
+	const history = useHistory();
 
 	const [check, setCheck] = useState(1);
 	const onClickBtn = (e) => {
@@ -24,9 +27,19 @@ export default function Register() {
 			setCheck(0);
 		}
 	};
+
+	// Xử lý register với fb
+	const registerWithGoogle = async() => {
+		const responseRegister = await handleLoginWithGoogle("register");
+		console.log("111111", responseRegister);
+		if (responseRegister) {
+			history.push("/");
+		}
+	}
+	
 	return (
 		<div className="register">
-			<div className="register__title">MY JOBS</div>
+			<div className="register__title">Đăng Ký MY JOBS</div>
 			<div className="register__box">
 				<div className="line__register"></div>
 				<div className="register__box__left">
@@ -43,8 +56,8 @@ export default function Register() {
 				<div className="register__box__right">
 					<div className="right">
 						<div className="register__box__right__text">Hoặc đăng nhập với</div>
-						<button className="fb">Đăng nhập với facebook</button>
-						<button className="in">Đăng nhập với google</button>
+						<button className="fb" onClick={handleLoginWithFacebook}>Đăng nhập với facebook</button>
+						<button className="in" onClick={registerWithGoogle}>Đăng nhập với google</button>
 						<div className="register__box__right__text">
 							Bạn đã có tài khoản? <Link to="/login">Đăng nhập</Link> ở đây
 						</div>

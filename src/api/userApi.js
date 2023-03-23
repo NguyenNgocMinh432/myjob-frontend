@@ -25,7 +25,7 @@ class UserApi {
     postuser = (params) => {
         const url = '/users';
         return axiosClient.post(url, params).then(data => {
-            message.success("Thêm công việc thành công!");
+            message.success("Thêm tài khoản thành công!");
         }).catch(err => {
             message.error("Có lỗi xảy ra!");
         });

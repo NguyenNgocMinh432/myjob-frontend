@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import loginApi from "../../../api/loginApi";
 import { handleLoginWithFacebook } from "../../utils/handleLoginFacebook";
+import { handleLoginWithGoogle } from "../../utils/handleLoginGoogle";
 export default function Login() {
 	// const provider = new GoogleAuthProvider();
 	const provider = new firebase.auth.GoogleAuthProvider();
@@ -62,40 +63,13 @@ export default function Login() {
 				}
 			});
 	};
-
-	const handleLoginWithGoogle = () => {
-		firebase
-			.auth()
-			.signInWithPopup(provider)
-			.then((result) => {
-				console.log("result", result)
-				/** @type {firebase.auth.OAuthCredential} */
-				var credential = result.credential;
-
-				// This gives you a Google Access Token. You can use it to access the Google API.
-				var token = credential.accessToken;
-				// The signed-in user info.
-				var user = result.user;
-				// IdP data available in result.additionalUserInfo.profile.
-				// ...
-                console.log(user);
-				if (user.displayName) {
-					history.push("/");
-				}
-			})
-			.catch((error) => {
-				// Handle Errors here.
-                console.log(error);
-				var errorCode = error.code;
-				var errorMessage = error.message;
-				// The email of the user's account used.
-				var email = error.email;
-				// The firebase.auth.AuthCredential type that was used.
-				var credential = error.credential;
-				// ...
-			});
-	};
-
+	const hanleLoginGoogle = async () => {
+		const responseLogin = await handleLoginWithGoogle("login");
+		console.log("responseLogin", responseLogin);
+		if (responseLogin) {
+			history.push("/");
+		}
+	}
 	return (
 		<div className="login">
 			<div className="login__title">
@@ -139,7 +113,7 @@ export default function Login() {
 							Hoặc đăng nhập với
 						</div>
 						<button className="fb" onClick={handleLoginWithFacebook}>Đăng nhập với facebook</button>
-						<button className="in" onClick={handleLoginWithGoogle}>
+						<button className="in" onClick={hanleLoginGoogle}>
 							Đăng nhập với google
 						</button>
 						<div className="login__box__right__text">

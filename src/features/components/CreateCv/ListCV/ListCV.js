@@ -33,15 +33,19 @@ export default function ListCV({ data, loading }) {
 				</div>
 				<div className="heading__hr"></div>
 			</div>
-			<div className="div-btn-cv">
-				<Link className="btn-infor-cv" onClick={onClickInforCV}>
-					Điền thông tin CV
-				</Link>
-			</div>
 			<div className="container mb-5">
+				<div className="div-btn-cv d-flex justify-content-between">
+					<div class="search">
+						<input type="text" name="" id="" placeholder="Tìm kiếm Cv ....." class="search__input" />
+						<button type="submit" class="search__button" tabIndex="-1">Search</button>
+					</div>
+					<Link className="btn-infor-cv" onClick={onClickInforCV}>
+						Điền thông tin CV
+					</Link>
+				</div>
 				<div className="row">
-					<div className="col-md-3">Tìm kiếm</div>
-					<div className="col-md-8">
+					<div className="col-md-0"></div>
+					<div className="col-md-10">
 						<div className="row">
 							{loading ? (
 								<SpinLoad />

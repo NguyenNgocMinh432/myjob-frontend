@@ -75,3 +75,22 @@
 		height: 50% !important;
 	}
 }
+.slick-arrow {
+	border-radius: 50%;
+}
+.slick-prev {
+	left: -60px;
+	width: 40px;
+    height: 40px;
+	&::before {
+		font-size: 42px;
+	}
+}
+.slick-next {
+    right: -60px;
+	width: 40px;
+    height: 40px;
+	&::before {
+		font-size: 42px;
+	}
+}
