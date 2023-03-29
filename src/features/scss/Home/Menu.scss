@@ -29,7 +29,7 @@ nav .line_slide {
 	}
 	&__brand {
 		font-size: 2rem;
-		padding: 1rem 2rem;
+		// padding: 1rem 2rem;
 		color: white;
 	}
 	&--right {
@@ -41,7 +41,7 @@ nav .line_slide {
 	nav {
 		display: flex;
 		font-size: 1rem;
-		margin-right: 1rem;
+		// margin-right: 1rem;
 		a {
 			text-decoration: none;
 			color: white;
@@ -122,6 +122,19 @@ nav .line_slide {
 		}
 	}
 }
+
+.header {
+	&__menu {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		z-index: 10;
+		height: 100px;
+		justify-content: space-between;
+		padding: 0;
+	}
+}
+
 .menu__right--pc {
 	display: flex;
 	justify-content: space-between;

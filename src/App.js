@@ -24,6 +24,7 @@ import checkLoginApi from "./api/checkLogin";
 import Empty from "./features/components/Empty/Empty";
 import Menu from "./features/components/Home/Menu/Menu";
 import CheckMenu from "./features/components/CheckMenu/CheckMenu";
+import Community from "./features/components/community/community";
 function App() {
 	useEffect(() => {
 		checkBar();
@@ -112,6 +113,9 @@ function App() {
 					</Route>
 					<Route exact path="/inforCV">
 						<InforCV />
+					</Route>
+					<Route exact path="/community">
+						<Community />
 					</Route>
 				</Switch>
 			</Router>

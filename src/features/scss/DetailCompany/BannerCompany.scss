@@ -66,3 +66,24 @@
         }
     }
 }
+// css button follow người dùng
+#follow-button {
+    color: #3399FF;
+    font-family: "Helvetica";
+    font-size: 10pt;
+    // // background-color: #ffffff;
+    border: 1px solid;
+    border-color: #3399FF;
+    border-radius: 3px;
+    width: 85px;
+    height: 30px;
+    // position: absolute;	 
+    // top: 50px;
+    // left: 50px;	
+    cursor: hand;		   
+    &:hover {
+        background-color: #3399FF;
+        color: #fff;
+    } 
+    font-weight: bold;
+  }

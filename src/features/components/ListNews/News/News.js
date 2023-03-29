@@ -38,17 +38,29 @@ export default function News() {
 							</div>
 						) : (
 							news.rows.map((data, index) => (
-								<div className="col-md-4 d-flex" key={index}>
+								<div
+									className="col-md-4 d-flex"
+									key={index}
+									style={{ minHeight: "455px" }}
+								>
 									<div className="new__box">
 										<div className="new__box__img">
 											<img src={data.avatar} alt="" />
 										</div>
 										<div className="new__box__content">
-											<Link to={`/news/detailNew/${data.id}`}>
-												<div className="new__box__content__title">{data.name}</div>
+											<Link
+												to={`/news/detailNew/${data.id}`}
+											>
+												<div className="new__box__content__title">
+													{data.name}
+												</div>
 											</Link>
-											<div className="new__box__content__date">{checkDate(data.createdAt)}</div>
-											<div className="new__box__content__sumary">{data.samary}</div>
+											<div className="new__box__content__date">
+												{checkDate(data.createdAt)}
+											</div>
+											<div className="new__box__content__sumary">
+												{data.samary}
+											</div>
 										</div>
 									</div>
 								</div>
@@ -59,7 +71,10 @@ export default function News() {
 						""
 					) : (
 						<div className="pagination">
-							<Pagination defaultCurrent={page} total={news.count} />
+							<Pagination
+								defaultCurrent={page}
+								total={news.count}
+							/>
 						</div>
 					)}
 				</div>

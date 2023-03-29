@@ -28,8 +28,8 @@ export default function Footer() {
 	};
 	return (
 		<div className="footer">
-			<div className="container-footer">
-				<div className="row justify-content-center">
+			<div className="container-footer container">
+				<div className="row justify-content-between"> 
 					<div className="col-lg-3">
 						<div className="footer__box">
 							<div className="footer__title">

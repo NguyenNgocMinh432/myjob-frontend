@@ -32,6 +32,8 @@ export default function Mn(props) {
 	useEffect(() => {
 		checkLoginApi.checkLogin().then((ok) => {
 			setUser(ok.data.user);
+			// Lưu user lấy được vào localStorage
+			localStorage.setItem('user', JSON.stringify(ok.data.user));
 		});
 		let idClass = pathname.slice(1);
 		let ListMenu = nav_el.current.querySelectorAll(".item");
@@ -66,6 +68,7 @@ export default function Mn(props) {
 	);
 	const onLogOut = () => {
 		localStorage.removeItem("token");
+		localStorage.removeItem("user");
 		setUser("");
 	};
 	const logOut = (
@@ -91,68 +94,76 @@ export default function Mn(props) {
 		</Menu>
 	);
 	return (
-		<div className={props.class}>
-			<div className="menu__brand">
-				<Link to="/">
-					<img src={logo} height={40} alt="" />
-				</Link>
-			</div>
-			<div className="menu--right">
-				<div className="bar menu__bar" ref={bar_el}>
-					<div className="line--top"></div>
-					<div className="line--mid"></div>
-					<div className="line--bot"></div>
+		<div className={`${props.class}`}>
+			<div className="container header__menu">
+				<div className="menu__brand">
+					<Link to="/">
+						<img src={logo} height={40} alt="" />
+					</Link>
 				</div>
-				<nav ref={nav_el} class="w-45 menu__right--pc">
-					<div className="item active" id="">
-						<Link to="/">Trang chủ</Link>
+				<div className="menu--right">
+					<div className="bar menu__bar" ref={bar_el}>
+						<div className="line--top"></div>
+						<div className="line--mid"></div>
+						<div className="line--bot"></div>
 					</div>
-					{/* Là tài khoản công ty hoặc admin mới xem được CV */}
-
-					{user ? (
-						user.role === "admin" || user.role === "grant" ? (
-							<div className="item" id="candidates">
-								<Link to="/candidates">Ứng viên</Link>
-							</div>
-						) : (
-							""
-						)
-					) : (
-						""
-					)}
-
-					<div className="item" id="jobs">
-						<Link to="/jobs">Việc làm</Link>
-					</div>
-					<div className="item" id="companys">
-						<Link to="/companys">Nhà tuyển dụng</Link>
-					</div>
-					{user && user.role === "user" && (
-						<div className="item">
-							<Link to="/createCv">Tạo cv</Link>
+					<nav ref={nav_el} class="w-50 menu__right--pc">
+						<div className="item active" id="">
+							<Link to="/">Trang chủ</Link>
 						</div>
-					)}
-					<div className="line_slide" ref={line_el}></div>
-					{user ? (
-						user.role === "admin" || user.role === "grant" ? (
-							<div className="item">
-								<Link to="/admin">admin</Link>
+						{/* Là tài khoản user sẽ xem được cộng đồng người dùng web */}
+						{user?.role !== 'grant' && (
+							<div className="item" id="community">
+								<Link to="/community">Cộng đồng</Link>
 							</div>
+						)} 
+						{/* Là tài khoản công ty hoặc admin mới xem được CV */}
+						{user ? (
+							user.role === "admin" || user.role === "grant" ? (
+								<div className="item" id="candidates">
+									<Link to="/candidates">Ứng viên</Link>
+								</div>
+							) : (
+								""
+							)
 						) : (
 							""
-						)
-					) : (
-						""
-					)}
-					<Dropdown overlay={ss} trigger={["click"]}>
-						<span className="nav-link">
-							<Avatar
-								size="small"
-								src={user ? user.avatar : imgDefault}
-							/>
-						</span>
-					</Dropdown>
-				</nav>
+						)}
+
+						<div className="item" id="jobs">
+							<Link to="/jobs">Việc làm</Link>
+						</div>
+						<div className="item" id="companys">
+							<Link to="/companys">Nhà tuyển dụng</Link>
+						</div>
+						{/* Check điều kiện là use thường mơi cho phép tạo cv */}
+						{user && user.role === "user" && (
+							<div className="item">
+								<Link to="/createCv">Tạo CV</Link>
+							</div>
+						)}
+						<div className="line_slide" ref={line_el}></div>
+						{user ? (
+							user.role === "admin" || user.role === "grant" ? (
+								<div className="item">
+									<Link to="/admin">Admin</Link>
+								</div>
+							) : (
+								""
+							)
+						) : (
+							""
+						)}
+						<Dropdown overlay={ss} trigger={["click"]}>
+							<span className="nav-link">
+								<Avatar
+									size="small"
+									src={user ? user.avatar : imgDefault}
+								/>
+							</span>
+						</Dropdown>
+					</nav>
+				</div>
 			</div>
 		</div>
 	);
