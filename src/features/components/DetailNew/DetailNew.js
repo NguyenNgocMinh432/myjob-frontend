@@ -13,6 +13,7 @@ export default function DetailNew() {
 		if (id) {
 			setNews(
 				await newApi.getOne(id).then((data) => {
+					console.log(data);
 					return data;
 				})
 			);

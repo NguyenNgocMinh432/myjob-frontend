@@ -6,6 +6,8 @@ import { message } from 'antd';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 export default function RegisterUser() {
+    // Lay data hoc 
+    const baseUrl = process.env.REACT_APP_BASE_URL_TEST;
     const schema = yup.object().shape({
         userName: yup.string().email().required(),
         name: yup.string().required(),
@@ -22,7 +24,7 @@ export default function RegisterUser() {
     const onSubmit = (data) => {
         const asUserRole = [{ roleId: 2 }]
         const dataUser = { address, banner, avatar, name: data.name, email: data.userName, password: data.password, asUserRole, status: 1 }
-        const link = "http://13.229.180.153/users"
+        const link = `${baseUrl}users`
         axios.post(link, dataUser).then(ok => {
             if (ok.data.data === "email đã tồn tại!") {
                 message.info("Email đã được đăng ký!")

@@ -82,14 +82,17 @@ export default function InforCV() {
 		setStandard(total);
 	})
 	const handelOnChange = (e) => {
-		console.log(e);
 		if(e.e === "<p><br></p>" || e.e === '') {
 			setStandard(standard - 1);
 		}
 		// setStandard(e.stt)
 		// setValue(e);
 	};
-	console.log("standard", standard);
+	const handleCreateCV = () => {
+		alert('Create')
+	}
+	console.log(target);
+
 	return (
 		<div>
 			{/* <MenuNotHome /> */}
@@ -134,7 +137,7 @@ export default function InforCV() {
 					);
 				})}
 				<div className="w-100 d-flex justify-content-end mt-3 mb-3">
-					<Button type="primary">Thêm</Button>
+					<Button type="primary" onClick={handleCreateCV}>Thêm</Button>
 				</div>
 			</div>
 			<Footer />

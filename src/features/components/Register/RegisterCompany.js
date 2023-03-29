@@ -10,6 +10,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { message } from 'antd';
 export default function RegisterCompany() {
+    // Lấy biến môi trường base url
+    const baseUrl = process.env.REACT_APP_BASE_URL_TEST;
     const schema = yup.object().shape({
         userName: yup.string().email().required(),
         name: yup.string().required(),
@@ -28,7 +30,7 @@ export default function RegisterCompany() {
 
     const onSubmit = (data) => {
         const dataCompany = { address, banner, avatar, name: data.name, email: data.userName, password: data.password, status: 0 }
-        const link = "http://13.229.180.153/companys"
+        const link = `${baseUrl}companys`
         axios.post(link, dataCompany).then(ok => {
             if (ok.data.data === "email đã tồn tại!") {
                 message.info("Email đã được đăng ký!")

@@ -13,10 +13,10 @@ export default function BannerNew(props) {
 		<div className="bannerNew" style={style}>
 			<div className="bannerNew__content">
 				<div className="bannerNew__content__title">
-					<span>{props.title}</span>
+					<span>{props?.title}</span>
 				</div>
 				<div className="bannerNew__content__tag">
-					{props.tags.map((data, index) => (
+					{props?.tags?.map((data, index) => (
 						<div className="newTag" key={index}>
 							<Link to="">{data.name}</Link>
 						</div>
