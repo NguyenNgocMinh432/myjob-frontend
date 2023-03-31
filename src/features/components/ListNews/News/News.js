@@ -41,7 +41,6 @@ export default function News() {
 								<div
 									className="col-md-4 d-flex"
 									key={index}
-									style={{ minHeight: "455px" }}
 								>
 									<div className="new__box">
 										<div className="new__box__img">

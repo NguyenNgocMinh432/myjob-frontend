@@ -30,6 +30,14 @@ class UserApi {
             message.error("Có lỗi xảy ra!");
         });
     };
+    postfollows = (params) => {
+        const url = '/follows';
+        return axiosClient.post(url, params).then(data => {
+            message.success("Follow Thành công!!");
+        }).catch(err => {
+            message.error("Có lỗi xảy ra!");
+        });
+    };
     deleteuser = (id) => {
         const url = `/users/${id}`;
         return axiosClient.delete(url)
