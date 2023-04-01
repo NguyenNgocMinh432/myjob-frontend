@@ -34,7 +34,15 @@ export default function Mn(props) {
 			setUser(ok.data.user);
 			// Lưu user lấy được vào localStorage
 			localStorage.setItem('user', JSON.stringify(ok.data.user));
-		});
+		})
+		.catch((err) => {
+			const checkUserFromLocal = JSON.parse(localStorage.getItem('user'));
+			if (checkUserFromLocal) {
+				setUser(checkUserFromLocal);
+			} else {
+
+			}
+		})
 		let idClass = pathname.slice(1);
 		let ListMenu = nav_el.current.querySelectorAll(".item");
 		nav_el.current

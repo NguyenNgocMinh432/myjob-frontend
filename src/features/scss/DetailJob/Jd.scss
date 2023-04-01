@@ -17,6 +17,7 @@
             display: flex;
             flex-wrap: wrap;
             font-size: .9rem;
+            justify-content: space-between;
             .fas{
                 margin-right: 0.5rem;
             }
@@ -32,7 +33,9 @@
                 margin-right: 3rem;
 
             }
-           
+            &__info {
+                display: flex;
+            }
         }
         &__title--jd{
             font-size: 1.2rem;
@@ -42,9 +45,10 @@
             }
         }
         .apply{
-            position: absolute;
-            right: 20px;
-            bottom: 20px;
+            // position: absolute;
+            // right: 20px;
+            // bottom: 20px;
+            width: 50%;
             a{
                 outline: none;
                 border: none;
@@ -161,4 +165,9 @@
             padding-right: 12px !important;
         }
     }
+}
+
+.div__button {
+    width: 37%;
+    display: flex;
 }

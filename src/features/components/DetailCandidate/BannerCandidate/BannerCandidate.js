@@ -9,8 +9,7 @@ export default function BannerCompany({ avatar, banner, name, address }) {
 	const [callApi, setApi] = useState(false);
 	const user = JSON.parse(localStorage.getItem("user"));
 	const checkFollows = user?.follows;
-	console.log("checkFollows", checkFollows)
-	const userId = user.id;
+	const userId = user?.id;
 	const currentUrl = window.location.pathname;
 	const converUrl = currentUrl.split("/");
 	const idUserFollow = Number(converUrl[converUrl.length - 1]);
