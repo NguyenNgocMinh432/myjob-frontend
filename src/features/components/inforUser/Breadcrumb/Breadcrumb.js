@@ -8,7 +8,7 @@ export default function Breadcrumbs({ name }) {
             <div className="container">
                 <Link to="/">Trang chủ</Link>
                 <span className="fa fa-angle-double-right"></span>
-                <Link to="/candidates">Ứng viên</Link>
+                <Link to="/candidates">Trang cá nhân</Link>
                 <span className="fa fa-angle-double-right"></span>
                 <span className="active">{name}</span>
             </div>

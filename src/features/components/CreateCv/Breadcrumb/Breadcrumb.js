@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import "../../../scss/Breadcrumb.scss"
 export default function Breadcrumb() {
+    const getUrl = window.location.hostname;
+    console.log(getUrl);
     return (
         <div className="breadcrumb">
             <div className="container">
