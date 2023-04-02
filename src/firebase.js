@@ -1,5 +1,6 @@
 import firebase from "firebase";
 import "firebase/storage"
+import "firebase/messaging";
 const config = {
     apiKey: "AIzaSyCB3qsovZ18tPkKX7IS1_SKbyc2Mm3ikgQ",
     authDomain: "my-jobs-dfad3.firebaseapp.com",
@@ -10,6 +11,6 @@ const config = {
 };
 
 firebase.initializeApp(config)
-
+const messaging = firebase.messaging();
 const storage = firebase.storage()
-export { storage, firebase as default }
+export {messaging, storage, firebase as default }

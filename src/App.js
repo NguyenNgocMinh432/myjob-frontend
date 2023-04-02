@@ -1,3 +1,4 @@
+import { messaging } from "./firebase";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch, useRouteMatch } from "react-router-dom";
 import "./App.scss";
@@ -26,6 +27,36 @@ import Menu from "./features/components/Home/Menu/Menu";
 import CheckMenu from "./features/components/CheckMenu/CheckMenu";
 import Community from "./features/components/community/community";
 function App() {
+
+	// config phần thông báo
+	// const messaging = getMessaging();
+	// Add the public key generated from the console here.
+	// getToken(messaging, {vapidKey: "BDEyeuQ-nFWuFDTOvTQQC8PvWTgUvw3a7JnyaZIH6h8DDcfkaOCassGDcKA0gyuXrGQE_D8ZU6KMUqCrapOqO-U"}).then((curentToken) => {
+	// 	if (curentToken) {
+	// 		console.log(curentToken);
+	// 	} else {
+	// 		console.log("error không thể get token");
+	// 	}
+	// });
+	//config phần thông báo
+	useEffect(() => {
+
+		if (Notification.permission === 'granted') {
+			// Hiển thị thông báo
+			messaging.requestPermission().then(() => {
+				return messaging.getToken()
+			}).then((data) => {
+				console.log("data token thông báo", data);
+			});
+		  } else if (Notification.permission === 'denied') {
+			// Hiển thị thông báo lỗi
+			console.log(" chưa cho quyền thông báo rồi")
+		  } else {
+			// Hiển thị thông báo yêu cầu quyền
+		  }
+		
+	})
+
 	useEffect(() => {
 		checkBar();
 	});

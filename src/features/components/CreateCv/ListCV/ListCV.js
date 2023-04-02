@@ -13,6 +13,8 @@ export default function ListCV({ data, loading }) {
 	const [valueSearch, setValueSearch] = useState();
 	const [dataCV, setDataCV] = useState(data?.rows);
 	const history = useHistory();
+
+	let getUserFromLocalStorage;
 	useEffect(() => {
 		// checkLoginApi
 		// 	.checkLogin()
@@ -22,10 +24,10 @@ export default function ListCV({ data, loading }) {
 		// 		}
 		// 	})
 		// 	.catch((err) => {
-		const getUserFromLocalStorage = localStorage.getItem("user");
+		getUserFromLocalStorage = localStorage.getItem("user");
 		setUser(JSON.parse(getUserFromLocalStorage));
 		// });
-	});
+	}, [getUserFromLocalStorage]);
 
 	const onClickInforCV = () => {
 		if (user) {

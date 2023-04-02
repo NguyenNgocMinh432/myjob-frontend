@@ -183,7 +183,7 @@ export default function Jd(props) {
 										<Link>Ứng tuyển ngay</Link>
 									</div>
 									<div
-										className="apply"
+										className="apply__left"
 										// onClick={() =>
 										// 	showModal(
 										// 		checkDateDealtime(data.dealtime)
