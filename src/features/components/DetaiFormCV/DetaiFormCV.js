@@ -22,7 +22,7 @@ export default function DetaiFormCV() {
 		<div>
 			{/* <MenuNotHome /> */}
 			<Breadcrumb name={data ? data.name : ""} />
-			<CV data={data} />
+				<CV data={data} />
 			<Footer />
 		</div>
 	);

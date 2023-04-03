@@ -16,19 +16,13 @@ export default function ListCV({ data, loading }) {
 
 	let getUserFromLocalStorage;
 	useEffect(() => {
-		// checkLoginApi
-		// 	.checkLogin()
-		// 	.then((ok) => {
-		// 		if (ok.data.user.type === "user") {
-		// 			setUser(ok.data.user.id);
-		// 		}
-		// 	})
-		// 	.catch((err) => {
 		getUserFromLocalStorage = localStorage.getItem("user");
 		setUser(JSON.parse(getUserFromLocalStorage));
-		// });
 	}, [getUserFromLocalStorage]);
 
+	useEffect(() => {
+		setDataCV(data?.rows);
+	}, [data]);
 	const onClickInforCV = () => {
 		if (user) {
 			history.push("/inforCV");
@@ -64,6 +58,9 @@ export default function ListCV({ data, loading }) {
 							class="search__input"
 							onChange={(e) => {
 								setValueSearch(e.target.value);
+								if (valueSearch === "") {
+									setDataCV(data?.rows)
+								}
 							}}
 						/>
 						<button
@@ -81,22 +78,29 @@ export default function ListCV({ data, loading }) {
 				</div>
 				<div className="row">
 					<div className="col-md-0"></div>
-					<div className="col-md-10">
+					<div className="col-md-12">
 						<div className="row">
 							{loading ? (
 								<SpinLoad />
 							) : (
 								dataCV?.map((ok, index) => (
 									<div
-										className="col-md-4 d-flex"
+										className="col-md-3 d-flex"
 										key={index}
 									>
-										<Link to={`/detaiFormCV/${ok.id}`}>
+										<Link
+											to={`/detaiFormCV/${ok.id}`}
+											style={{ width: "100%" }}
+										>
 											<div className="box">
 												<div className="box-img">
 													<img
 														src={ok.avatar}
 														alt=""
+														style={{
+															height: "306px",
+															objectFit: "cover",
+														}}
 													/>
 												</div>
 												<div className="box-tag">

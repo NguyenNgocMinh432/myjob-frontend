@@ -31,7 +31,11 @@ export default function Jd(props) {
 			if (ok.data.user.type === "user") {
 				setUser(ok.data.user.id);
 			}
-		});
+		})
+		.catch((err) => {
+			const getUserFromLocal = JSON.parse(localStorage.getItem("user"));
+			setUser(getUserFromLocal.id);
+		})
 		saveWorkApi.getAll({ userId: user, workId: id }).then((data) => {
 			var a = data.data;
 			var b = [];
@@ -120,6 +124,28 @@ export default function Jd(props) {
 		}
 		userApi.userShare(dataShare)
 	}
+	const handleSelectCV =	async() => {
+		if (messager === "") {
+			message.warning("Bạn cần nhập lời nhắn!");
+		} else {
+			// await storage.ref(`fileCv/${file.name}`).put(file);
+			// const file1 = await storage
+			// 	.ref("fileCv")
+			// 	.child(tenFile)
+			// 	.getDownloadURL();
+			await workApplyApi.postworkApply([
+				{
+					userId: user,
+					workId: id,
+					message: messager,
+					link: "",
+					status: 0,
+				},
+			]);
+			setIsModalVisible(false);
+			setConfirmLoading(false);
+		}
+	}
 	return (
 		<div className="Jd">
 			<Modal
@@ -152,6 +178,10 @@ export default function Jd(props) {
 					id="file"
 				/>
 				<p>{file ? tenFile : ""}</p>
+
+				<label htmlFor="" className="file" onClick={handleSelectCV}>
+					Chọn CV mặc định
+				</label>
 			</Modal>
 			<div className="container">
 				<div className="row">
@@ -196,7 +226,7 @@ export default function Jd(props) {
 										className="apply__left"
 										onClick={handleSharePost}
 									>
-										<p>Chia sẻ</p>
+										<span>Chia sẻ</span>
 									</div>
 								</div>
 							</div>

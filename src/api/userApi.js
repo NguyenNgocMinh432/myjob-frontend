@@ -53,7 +53,7 @@ class UserApi {
     postDevice = (device) => {
         const url = "/users/device";
         return axiosClient.patch(url, device).then(data => {
-            message.success("đăng ký device thành công");
+            // message.success("đăng ký device thành công");
 
         }).catch(err => {
             message.error("Đăng ký device không thành công");

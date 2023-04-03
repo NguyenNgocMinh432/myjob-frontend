@@ -21,7 +21,7 @@ export default function Companys() {
 		actionResult({ page: page, status: 1 });
 		window.scrollTo(0, 0);
 	}, [page]);
-
+	console.log("số lượng công ty là", companys)
 	return (
 		<div className="companys">
 			<div className="heading">
@@ -48,12 +48,16 @@ export default function Companys() {
 										<div className="company__box__avatar">
 											<img src={data.avatar} alt="" />
 										</div>
-										<div className="company__box__name">{data.name}</div>
+										<div className="company__box__name">
+											{data.name}
+										</div>
 										<div className="company__box__address">
 											<span>{data.address}</span>
 										</div>
 										<div className="company__box__button">
-											<Link to={`/companys/${data.id}`}>Xem thêm</Link>
+											<Link to={`/companys/${data.id}`}>
+												Xem thêm
+											</Link>
 										</div>
 									</div>
 								</div>
@@ -64,7 +68,10 @@ export default function Companys() {
 						""
 					) : (
 						<div className="pagination">
-							<Pagination defaultCurrent={page} total={companys.count} />
+							<Pagination
+								defaultCurrent={page}
+								total={companys.count}
+							/>
 						</div>
 					)}
 				</div>
