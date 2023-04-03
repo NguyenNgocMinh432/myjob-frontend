@@ -26,6 +26,7 @@ import Empty from "./features/components/Empty/Empty";
 import Menu from "./features/components/Home/Menu/Menu";
 import CheckMenu from "./features/components/CheckMenu/CheckMenu";
 import Community from "./features/components/community/community";
+import userApi from "./api/userApi";
 function App() {
 
 	// config phần thông báo
@@ -38,6 +39,7 @@ function App() {
 	// 		console.log("error không thể get token");
 	// 	}
 	// });
+	const user = JSON.parse(localStorage.getItem("user"));
 	//config phần thông báo
 	useEffect(() => {
 
@@ -47,6 +49,13 @@ function App() {
 				return messaging.getToken()
 			}).then((data) => {
 				console.log("data token thông báo", data);
+				// Đăng ký dữ liệu lên db
+				const dataSendb = {
+					userId: user?.id,
+					token: data
+				}
+				console.log(dataSendb)
+				userApi.postDevice(dataSendb)
 			});
 		  } else if (Notification.permission === 'denied') {
 			// Hiển thị thông báo lỗi
@@ -55,7 +64,7 @@ function App() {
 			// Hiển thị thông báo yêu cầu quyền
 		  }
 		
-	})
+	}, [])
 
 	useEffect(() => {
 		checkBar();

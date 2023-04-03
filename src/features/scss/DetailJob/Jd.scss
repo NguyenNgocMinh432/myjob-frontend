@@ -63,7 +63,7 @@
 		}
 		.apply__left {
 			width: 30%;
-			a {
+			p {
 				outline: none;
 				border: none;
 				padding: 0.5rem 1rem;
@@ -75,6 +75,8 @@
 				&:hover {
 					background-color: $bgButtonApplyHover;
 				}
+				margin: 0 !important;
+				cursor: pointer;
 			}
 		}
 	}

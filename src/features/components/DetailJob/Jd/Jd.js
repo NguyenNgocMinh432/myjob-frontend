@@ -14,6 +14,7 @@ import {
 import qc from "../../../images/1227.gif";
 import "../../../scss/DetailJob/Jd.scss";
 import KeyTag from "../../Jobs/ListJobs/KeyTag";
+import userApi from "../../../../api/userApi";
 export default function Jd(props) {
 	let { data, id } = props;
 	const [user, setUser] = useState();
@@ -23,6 +24,8 @@ export default function Jd(props) {
 	const [messager, setMessager] = useState("");
 	const [state, setState] = useState({ tenFile: "", file: "" });
 	const { tenFile, file } = state;
+
+	const getUserFromLocalStorage = JSON.parse(localStorage.getItem("user"));
 	useEffect(() => {
 		checkLoginApi.checkLogin().then((ok) => {
 			if (ok.data.user.type === "user") {
@@ -87,7 +90,6 @@ export default function Jd(props) {
 		if (messager === "") {
 			message.warning("Bạn cần nhập lời nhắn!");
 		} else {
-			console.log("ji");
 			await storage.ref(`fileCv/${file.name}`).put(file);
 			const file1 = await storage
 				.ref("fileCv")
@@ -110,6 +112,14 @@ export default function Jd(props) {
 	const handleCancel = () => {
 		setIsModalVisible(false);
 	};
+	const handleSharePost = () => {
+		const dataShare = {
+			userId: getUserFromLocalStorage.id,
+			title: data.name,
+			address: data.address
+		}
+		userApi.userShare(dataShare)
+	}
 	return (
 		<div className="Jd">
 			<Modal
@@ -184,13 +194,9 @@ export default function Jd(props) {
 									</div>
 									<div
 										className="apply__left"
-										// onClick={() =>
-										// 	showModal(
-										// 		checkDateDealtime(data.dealtime)
-										// 	)
-										// }
+										onClick={handleSharePost}
 									>
-										<Link>Chia sẻ</Link>
+										<p>Chia sẻ</p>
 									</div>
 								</div>
 							</div>

@@ -49,6 +49,21 @@ class UserApi {
         }).catch(err => {
             message.error("Có lỗi xảy ra!");
         });
+    };
+    postDevice = (device) => {
+        const url = "/users/device";
+        return axiosClient.patch(url, device).then(data => {
+            message.success("đăng ký device thành công");
+
+        }).catch(err => {
+            message.error("Đăng ký device không thành công");
+        })
+    };
+    userShare = (info) => {
+        const url = "users/share";
+        return axiosClient.post(url, info).then( data => {
+            message.success("share bài tuyển dụng thành công");
+        })
     }
 }
 const userApi = new UserApi();
