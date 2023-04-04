@@ -9,6 +9,7 @@ import { Validators } from "./Validator";
 import JoditEditor from "jodit-react";
 import { Row } from "antd";
 import EditorCV from "../../../common/CV/EditorCV";
+import { storage } from "../../../../firebase";
 export default function InforCV() {
 	const [value, setValue] = useState();
 	const [target, setTarget] = useState("");
@@ -22,19 +23,18 @@ export default function InforCV() {
 	const [standard, setStandard] = useState(0);
 
 	const [state, setState] = useState({
-		typeofworkId: "",
-		typeofworkCheck: "",
-		tagId: "",
-		tagCheck: "",
+		target: "",
+		education: "",
+		experience: "",
+		action: "",
 		loading: false,
 		linkImg: "",
 		tenanh: "",
 		img: "",
 		anh: "",
-		linkImgBanner: "",
-		tenanhBanner: "",
-		imgBanner: "",
-		anhBanner: "",
+		certificate: "",
+		project: "",
+		more: "",
 	});
 
 	const {
@@ -50,7 +50,6 @@ export default function InforCV() {
 		tagCheck,
 		imgBanner,
 		anhBanner,
-		tagId,
 	} = state;
 
 	const listCreateCV = [
@@ -134,11 +133,12 @@ export default function InforCV() {
 		// setStandard(e.stt)
 		// setValue(e);
 	};
-	const handleCreateCV = () => {
+	const handleCreateCV =async() => {
 		if (standard < 7) {
 			message.error("Bạn còn thiếu tiêu chí chưa điền thông tin !!!!");
 		} else {
-			alert("đã đầy đủ tiêu chí");
+			const urlAvatar = await storage.ref(`imagesusercv/${state.img.name}`).put(state.img);
+			console.log(urlAvatar)
 		}
 	};
 	const hangdelimage = (e) => {
@@ -189,7 +189,7 @@ export default function InforCV() {
 							</div>
 						</label>
 						<div>
-							<input id="img" type="file" onChange={(e) => {hangdelimage(e)}} />
+							<input id="img" type="file" onChange={(e) => {hangdelimage(e)}} hidden />
 							{linkImg ? (
 								<img
 									src={linkImg}
