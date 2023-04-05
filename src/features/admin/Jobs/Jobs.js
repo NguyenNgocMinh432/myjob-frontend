@@ -6,7 +6,7 @@ import { removework, updatework, workData } from "../Slice/workSlice";
 export default function Work() {
 	const columns = [
 		{
-			title: "tên work",
+			title: "Tên work",
 			dataIndex: "name",
 		},
 		{

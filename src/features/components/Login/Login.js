@@ -57,7 +57,8 @@ export default function Login() {
 							}
 						});
 				} else {
-					localStorage.setItem("token", data);
+					console.log("đăng nhập thành công tài khoản công ty rồi", res)
+					localStorage.setItem("token", res);
 					message.success("Đăng nhập thành công!");
 					history.push("/");
 				}

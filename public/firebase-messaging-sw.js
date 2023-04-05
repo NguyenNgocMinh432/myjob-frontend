@@ -1,6 +1,11 @@
 import firebase from "firebase";
-import("https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js");
-import("https://www.gstatic.com/firebasejs/3.5.0/firebase-messaging.js");
+// // eslint-disable-next-line no-undef
+// importScripts("https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js");
+// // eslint-disable-next-line no-undef
+// importScripts("https://www.gstatic.com/firebasejs/3.5.0/firebase-messaging.js");
+
+import "firebase/app";
+import "firebase/messaging";
 
 if ("serviceWorker" in navigator) {
 	navigator.serviceWorker

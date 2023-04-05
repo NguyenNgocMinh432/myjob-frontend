@@ -10,6 +10,8 @@ import JoditEditor from "jodit-react";
 import { Row } from "antd";
 import EditorCV from "../../../common/CV/EditorCV";
 import { storage } from "../../../../firebase";
+import userApi from "../../../../api/userApi";
+import { useHistory } from "react-router-dom";
 export default function InforCV() {
 	const [value, setValue] = useState();
 	const [target, setTarget] = useState("");
@@ -21,7 +23,12 @@ export default function InforCV() {
 	const [moreInformation, setMoreInformation] = useState("");
 	const [activate, setActivate] = useState("");
 	const [standard, setStandard] = useState(0);
+	
+	// Lấy giá trị user từ localStorage.
+	const user = JSON.parse(localStorage.getItem("user"));
+	const idCV = localStorage.getItem("CVSelector");
 
+	const history = useHistory();
 	const [state, setState] = useState({
 		target: "",
 		education: "",
@@ -133,12 +140,26 @@ export default function InforCV() {
 		// setStandard(e.stt)
 		// setValue(e);
 	};
-	const handleCreateCV =async() => {
+	const handleCreateCV = async() => {
 		if (standard < 7) {
 			message.error("Bạn còn thiếu tiêu chí chưa điền thông tin !!!!");
 		} else {
 			const urlAvatar = await storage.ref(`imagesusercv/${state.img.name}`).put(state.img);
-			console.log(urlAvatar)
+			const getAnhFromFirebase = await storage.ref("imagesusercv").child(state.img.name).getDownloadURL();
+			const dataSend = {
+				userId: user.id,
+				cvId: Number(idCV),
+				target: target,
+				education: education,
+				experience: experience,
+				action: activate,
+				avatar: getAnhFromFirebase,
+				certificate: certificate,
+				project: presenters,
+				more: moreInformation,
+			}
+			await userApi.userCreateCV(dataSend);
+			history.push("/createCv")
 		}
 	};
 	const hangdelimage = (e) => {

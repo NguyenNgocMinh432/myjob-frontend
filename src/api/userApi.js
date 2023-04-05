@@ -22,6 +22,14 @@ class UserApi {
             return data.data
         });
     };
+    getUserCV = (params) => {
+        const url = `/users/getcvuser`;
+        return axiosClient.post(url, params).then(data => {
+            return data
+        }).catch(err => {
+            message.error("Có lỗi xảy ra!");
+        });
+    };
     postuser = (params) => {
         const url = '/users';
         return axiosClient.post(url, params).then(data => {
@@ -63,6 +71,12 @@ class UserApi {
         const url = "users/share";
         return axiosClient.post(url, info).then( data => {
             message.success("share bài tuyển dụng thành công");
+        })
+    };
+    userCreateCV = (data) => {
+        const url = "users/createcv";
+        return axiosClient.post(url, data).then( data => {
+            message.success("Tạo Cv thành công");
         })
     }
 }

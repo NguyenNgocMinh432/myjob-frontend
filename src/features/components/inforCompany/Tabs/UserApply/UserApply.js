@@ -8,7 +8,8 @@ export default function UserApply({ id }) {
 	const [data, setData] = useState();
 	const getApi = async () => {
 		await workApplyApi.checkWorkApply(id).then((data) => {
-			setData(data.Works);
+			console.log("check user ứng tuyển", data)
+			setData(data.works);
 		});
 	};
 	console.log(data);
@@ -16,6 +17,10 @@ export default function UserApply({ id }) {
 		getApi();
 	}, []);
 	const [showMess, setShowMess] = useState(false);
+
+	const handleSendEmail = () => {
+		alert("gửi tin nhắn thành côgn")
+	}
 	return (
 		<div className="userApply">
 			<div className="heading">
@@ -32,8 +37,8 @@ export default function UserApply({ id }) {
 					data.map((ok, index) => (
 						<div className="content___box" key={index}>
 							<div className="content___box--title">
-								<Link to={`jobs/work/${ok.id}`} className="text-dark">
-									{ok.name}
+								<Link to={`jobs/work/${ok?.id}`} className="text-dark">
+									{ok?.name}
 								</Link>
 							</div>
 							<div className="hr"></div>
@@ -46,7 +51,7 @@ export default function UserApply({ id }) {
 											<div className="col-md-12" key={index}>
 												<div className="d-flex">
 													<div className="content___box---user---img">
-														<img src={oki.avatar} title={oki.name} width={150} />
+														<img src={oki?.avatar} title={oki?.name} width={150} />
 													</div>
 													<div className="content___box---user---infor position-relative">
 														<table>
@@ -73,11 +78,11 @@ export default function UserApply({ id }) {
 																<td>{oki.male}</td>
 															</tr>
 														</table>
-														{oki.WorkApplies.link ? (
+														{oki?.workApplies?.link ? (
 															<button
 																className="btn-link"
 																onClick={() => {
-																	window.open(oki.WorkApplies.link);
+																	window.open(oki.workApplies.link);
 																}}
 															>
 																Xem CV
@@ -85,8 +90,8 @@ export default function UserApply({ id }) {
 														) : (
 															""
 														)}
-														<Popover content={oki.WorkApplies.message} title="Lời nhắn">
-															<button className="btn-message">
+														<Popover content={oki?.workApplies?.message} title="Lời nhắn">
+															<button className="btn-message" onClick={handleSendEmail}>
 																<i className="fas fa-comment-dots"></i>
 															</button>
 														</Popover>

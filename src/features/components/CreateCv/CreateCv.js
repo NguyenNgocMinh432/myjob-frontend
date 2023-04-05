@@ -13,7 +13,7 @@ export default function CreateCv() {
 	};
 	const formCVs = useSelector((state) => state.formCVs.formCV.data);
 	const loading = useSelector((state) => state.formCVs.loading);
-	console.log("formCVs", formCVs);
+
 	useState(() => {
 		actionResult();
 		window.scrollTo(0, 0);

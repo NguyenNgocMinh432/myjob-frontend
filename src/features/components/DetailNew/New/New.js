@@ -140,7 +140,7 @@ export default function New(props) {
 							</div>
 						</div>
 						<div className="advertisement">
-							<img src={qc} width="100%" alt="" />
+							{/* <img src={qc} width="100%" alt="" /> */}
 						</div>
 					</div>
 				</div>

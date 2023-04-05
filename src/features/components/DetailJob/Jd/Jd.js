@@ -27,15 +27,15 @@ export default function Jd(props) {
 
 	const getUserFromLocalStorage = JSON.parse(localStorage.getItem("user"));
 	useEffect(() => {
-		checkLoginApi.checkLogin().then((ok) => {
-			if (ok.data.user.type === "user") {
-				setUser(ok.data.user.id);
-			}
-		})
-		.catch((err) => {
-			const getUserFromLocal = JSON.parse(localStorage.getItem("user"));
-			setUser(getUserFromLocal.id);
-		})
+		// checkLoginApi.checkLogin().then((ok) => {
+		// 	if (ok.data.user.type === "user") {
+		// 		setUser(ok.data.user.id);
+		// 	}
+		// })
+		// .catch((err) => {
+		const getUserFromLocal = JSON.parse(localStorage.getItem("user"));
+		setUser(getUserFromLocal.id);
+		// })
 		saveWorkApi.getAll({ userId: user, workId: id }).then((data) => {
 			var a = data.data;
 			var b = [];
