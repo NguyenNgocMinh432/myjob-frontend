@@ -47,15 +47,14 @@ function App() {
 			// Hiển thị thông báo
 			messaging.requestPermission().then(() => {
 				return messaging.getToken()
-			}).then((data) => {
+			}).then(async(data) => {
 				console.log("data token thông báo", data);
 				// Đăng ký dữ liệu lên db
 				const dataSendb = {
 					userId: user?.id,
 					token: data
 				}
-				console.log(dataSendb)
-				userApi.postDevice(dataSendb)
+				await userApi.postDevice(dataSendb);
 			});
 		  } else if (Notification.permission === 'denied') {
 			// Hiển thị thông báo lỗi
