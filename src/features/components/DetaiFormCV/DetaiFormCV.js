@@ -21,18 +21,22 @@ export default function DetaiFormCV() {
 		window.scrollTo(0, 0);
 	}, []);
 	const handleClickCV = () => {
-		localStorage.setItem('CVSelector', params.id)
-		localStorage.setItem('htmlCV', JSON.stringify(data.content))
-		history.push("/inforCV")
-	}
+		localStorage.setItem("CVSelector", params.id);
+		localStorage.setItem("htmlCV", JSON.stringify(data.content));
+		history.push("/inforCV");
+	};
 	return (
 		<div>
 			{/* <MenuNotHome /> */}
 			<Breadcrumb name={data ? data.name : ""} />
+			<div className="container">
 				<div className="d-flex justify-content-end p-2">
-					<button className="btn-primary" onClick={handleClickCV}>Chọn Mẫu CV</button>
+					<button className="btn-primary p-2" onClick={handleClickCV}>
+						Chọn Mẫu CV
+					</button>
 				</div>
-				<CV data={data} />
+			</div>
+			<CV data={data} />
 			<Footer />
 		</div>
 	);

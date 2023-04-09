@@ -9,6 +9,7 @@ import New from "./New/New";
 export default function DetailNew() {
 	const { id } = useParams();
 	const [news, setNews] = useState();
+	const [dataNews, setDataNews] = useState();
 	useEffect(async () => {
 		if (id) {
 			setNews(
@@ -18,9 +19,11 @@ export default function DetailNew() {
 				})
 			);
 		}
+		setDataNews( await newApi.getAll().then((data) => {
+			return data;
+		}))
 		window.scrollTo(0, 0);
 	}, []);
-	console.log("news", news);
 	return (
 		<div>
 			{!news ? (
@@ -30,7 +33,7 @@ export default function DetailNew() {
 					{/* <Menu /> */}
 					<Breadcrumb name={news.name} />
 					<BannerNew img={news.avatar} title={news.name} tags={news.tags} />
-					<New content={news.content} />
+					<New content={news.content} data={dataNews} />
 					<Footer />
 				</div>
 			)}

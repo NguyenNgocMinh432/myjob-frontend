@@ -5,6 +5,8 @@ import qc from "../../../images/1227.gif";
 import renderHTML from "react-render-html";
 import { Link } from "react-router-dom";
 export default function New(props) {
+	const dataNews = props.data ? props?.data?.data?.rows : [];
+	console.log("dataNews", dataNews);
 	const styleFacebook = {
 		background: "#3f64ab",
 	};
@@ -55,7 +57,7 @@ export default function New(props) {
 					</div>
 					<div className="col-md-4">
 						<div className="box__recruitment">
-							<div className="box__recruitment__title title--detail">
+							<div className="box__recruitment__title title--detail fw-bold">
 								Việc làm đề xuất cho bạn
 							</div>
 							<div className="box__recruitment__content">
@@ -96,11 +98,22 @@ export default function New(props) {
 						</div>
 						<div className="newPost">
 							<div className="newPost_box">
-								<div className="newPost__box__title title--detail pt-2">
+								<div className="newPost__box__title title--detail pt-2 fw-bold">
 									Bài viết mới
 								</div>
 								<div className="newPost__box__content">
-									<div className="content__link">
+									{
+										dataNews?.map((item,index) => {
+											return <div className="content__link">
+												<Link to="" key={index}>
+													{
+														item?.name
+													}
+												</Link>
+											</div>
+										})
+									}
+									{/* <div className="content__link">
 										<Link to="">
 											Làm thế nào để CV của bạn trở thành
 											“chân ái” của nhà tuyển dụng?
@@ -135,7 +148,7 @@ export default function New(props) {
 											Làm thế nào để CV của bạn trở thành
 											“chân ái” của nhà tuyển dụng?
 										</Link>
-									</div>
+									</div> */}
 								</div>
 							</div>
 						</div>
