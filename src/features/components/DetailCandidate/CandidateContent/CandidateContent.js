@@ -5,8 +5,25 @@ import { checkDateCompany } from "../../../container/Functionjs";
 
 import "../../../scss/DetailCandidate/CandidateContent.scss";
 import KeyTag from "../../Jobs/ListJobs/KeyTag";
+import { useState } from "react";
+import userApi from "../../../../api/userApi";
 export default function CandidateContent({ data }) {
-	console.log(data);
+	const [name, setName] = useState();
+	const [email, setEmail] = useState();
+	const [content, setContent] = useState();
+	const [title, setTitle] = useState();
+	// Xử lý phần sendEmail
+	const handleSendMail =  async(e) => {
+		e.preventDefault();
+		const dataSendEmail = {
+			yourEmail: data.email,
+			content_email:content,
+			title,
+			name
+		}
+		await userApi.userSendMail(dataSendEmail);
+	}
+
 	return (
 		<div className="candidateContent">
 			<div className="container">
@@ -127,23 +144,31 @@ export default function CandidateContent({ data }) {
 										type="text"
 										name="yourName"
 										placeholder="Tên của bạn"
+										value={name}
+										onChange={(e) => setName(e.target.value)}
 									/>
 									<input
 										type="text"
 										name="yourEmail"
 										placeholder="Email của bạn"
+										value={email}
+										onChange={(e) => setEmail(e.target.value)}
 									/>
 									<input
 										type="text"
 										name="title"
 										placeholder="Tiêu đề"
+										value={title}
+										onChange={(e) => setTitle(e.target.value)}
 									/>
 									<input
 										type="text"
-										name="messager"
-										placeholder="Tên của bạn"
+										name="content_email"
+										placeholder="Nội dung mail"
+										value={content}
+										onChange={(e) => setContent(e.target.value)}
 									/>
-									<input type="submit" value="Gửi" />
+									<input type="submit" value="Gửi" onClick={handleSendMail}/>
 								</form>
 							</div>
 						</div>

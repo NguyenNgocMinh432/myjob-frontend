@@ -78,6 +78,12 @@ class UserApi {
         return axiosClient.post(url, data).then( data => {
             message.success("Tạo Cv thành công");
         })
+    };
+    userSendMail = (data) => {
+        const url = "users/sendMail";
+        return axiosClient.post(url, data).then(response => {
+            message.success("Gửi mail liên hệ thành công");
+        });
     }
 }
 const userApi = new UserApi();

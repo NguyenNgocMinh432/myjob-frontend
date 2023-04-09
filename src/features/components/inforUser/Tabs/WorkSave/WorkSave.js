@@ -15,7 +15,9 @@ export default function WorkSave({ id }) {
 		getApi();
 	}, []);
 	return (
-		<div className="ListJob">
+		<div className="ListJob" style={{
+			minHeight: '100vh'
+		}}>
 			<div className="heading">
 				<div className="heading__title">
 					<h3>Công việc đã lưu</h3>
