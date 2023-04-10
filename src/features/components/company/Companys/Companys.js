@@ -55,7 +55,7 @@ export default function Companys() {
 											<span>{data.address}</span>
 										</div>
 										<div className="company__box__button">
-											<Link to={`/companys/${data.id}`}>
+											<Link to={`/companys/${data.id}`} className="fw-bold">
 												Xem thêm
 											</Link>
 										</div>

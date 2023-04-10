@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { typeWorkData } from "../../../admin/Slice/typeWorkSlice";
 import { GetCategoryHome } from "../../../container/Functionjs";
 import "../../../scss/Home/ListCategories.scss";
@@ -9,6 +9,7 @@ import SpinLoad from "../../Spin/Spin";
 import renderHtml from "react-render-html";
 export default function ListCategories() {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const actionResult = async () => {
 		await dispatch(typeWorkData({ status: 1 }));
 	};
@@ -18,6 +19,10 @@ export default function ListCategories() {
 	useEffect(() => {
 		actionResult();
 	}, []);
+
+	const handleClickCategory = () => {
+		history.push("/jobs");
+	}
 	return (
 		<div className="categori">
 			<div className="container">
@@ -32,7 +37,7 @@ export default function ListCategories() {
 						<SpinLoad />
 					) : (
 						GetCategoryHome(typework).map((item, index) => (
-							<div className="col-lg-3 col-md-4 col-sm-12 " key={index}>
+							<div className="col-lg-3 col-md-4 col-sm-12 " key={index} onClick={handleClickCategory}>
 								<Link to="" className="categori__link">
 									<div className="categori__box">
 										<div className="categori__title">{item.name}</div>

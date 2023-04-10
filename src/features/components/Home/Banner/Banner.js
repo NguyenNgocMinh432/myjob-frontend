@@ -3,10 +3,22 @@ import "../../../scss/Home/Banner.scss";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { removeVietnameseTones } from "../../../container/Functionjs";
+import Suggests from "../Suggest/Suggests";
+import { useSelector } from "react-redux";
 export default function Banner() {
 	const [state, setState] = useState({ name: "", address: "" });
+	const [isSuggest, setSuggest] = useState(false);
+	const [ check, setCheck] = useState('');
 	const { name, address } = state;
+	const work = useSelector((state) => state.works.work.data);
+	const loading = useSelector((state) => state.works.loading);
 	const onchange = (e) => {
+		setCheck(e.target.value);
+		if (e.target.value !== ""){
+			setSuggest(true);
+		} else if (e.target.value === ""){
+			setSuggest(false);
+		}
 		setState({
 			...state,
 			[e.target.name]: e.target.value,
@@ -51,24 +63,8 @@ export default function Banner() {
 							<button type="button">Search</button>
 						</Link>
 					</div>
-					{/* <div>
-						<div class="search">
-							<input
-								type="text"
-								name=""
-								id=""
-								placeholder="Write something"
-								class="search__input"
-							/>
-							<button
-								type="submit"
-								class="search__button"
-								tabIndex="-1"
-							>
-								Search
-							</button>
-						</div>
-					</div> */}
+					{/* Gợi ý công việc khi người dùng search */}
+					{ isSuggest && <Suggests work={work}/> }
 					<div className="banner__search--suggestions"></div>
 				</div>
 			</div>
