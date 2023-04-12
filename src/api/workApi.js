@@ -10,6 +10,10 @@ class WorkApi {
         const url = '/searchWorks';
         return axiosClient.get(url, { params });
     };
+    suggest = (params) => {
+        const url = '/searchWorks/suggest';
+        return axiosClient.get(url, { params });
+    };
     getAllId = (params) => {
         const url = '/workId';
         return axiosClient.get(url, { params });

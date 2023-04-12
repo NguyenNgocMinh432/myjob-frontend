@@ -8,12 +8,15 @@ import Breadcrumbs from "./Breadcrumb/Breadcrumb";
 import Job from "./ListJobs/Job";
 import Search from "./Search/Search";
 export default function Jobs() {
+	const user = JSON.parse(localStorage.getItem('user'));
+
 	const [state, setState] = useState({
+		userId: user?.id,
 		name: getQueryVariable("name") || "",
 		address: getQueryVariable("address") || "",
 		data: "",
 	});
-	const { name, address, data } = state;
+	const { name, address, data, userId } = state;
 	const [time, setTime] = useState("0");
 	const [amount, setAmount] = useState("0");
 	const hangdelOnChange = (e) => {
@@ -31,7 +34,7 @@ export default function Jobs() {
 		setAmount(e);
 	};
 	useEffect(async () => {
-		await workApi.search({ name: name, nature: time, address: address, status: 1 }).then((ok) => {
+		await workApi.search({ name: name, nature: time, address: address, status: 1, userId: userId }).then((ok) => {
 			setState({
 				...state,
 				data: ok.data,

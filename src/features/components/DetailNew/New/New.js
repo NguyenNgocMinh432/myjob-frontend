@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../../scss/DetailNew/New.scss";
 import logo from "../../../images/logoNew2.png";
 import qc from "../../../images/1227.gif";
 import renderHTML from "react-render-html";
 import { Link } from "react-router-dom";
+import workApi from "../../../../api/workApi";
 export default function New(props) {
 	const dataNews = props.data ? props?.data?.data?.rows : [];
-	console.log("dataNews", dataNews);
 	const styleFacebook = {
 		background: "#3f64ab",
 	};
@@ -17,6 +17,7 @@ export default function New(props) {
 	const styleTwitch = {
 		background: "#1d9ceb",
 	};
+	console.log(props.dataWorkSuggest)
 	return (
 		<div className="DetailNew">
 			<div className="container">
@@ -61,7 +62,26 @@ export default function New(props) {
 								Việc làm đề xuất cho bạn
 							</div>
 							<div className="box__recruitment__content">
-								<div className="box__new">
+								{
+									props.dataWorkSuggest.length > 0 && props.dataWorkSuggest?.map((item, index) => {
+										return <div className="box__new">
+											<div className="icon__new">
+												<img src={item.company.avatar} alt="" />
+											</div>
+											<div className="content">
+												<div className="content__title">
+													<Link to="">{item.name}</Link>
+												</div>
+												<div className="content__name">
+													<Link to="">
+														{item.company.name}
+													</Link>
+												</div>
+											</div>
+										</div>
+									})
+								}
+								{/* <div className="box__new">
 									<div className="icon__new">
 										<img src={logo} alt="" />
 									</div>
@@ -90,7 +110,7 @@ export default function New(props) {
 											</Link>
 										</div>
 									</div>
-								</div>
+								</div> */}
 								<Link to="" className="xemthem">
 									Xem thêm {">>"}
 								</Link>

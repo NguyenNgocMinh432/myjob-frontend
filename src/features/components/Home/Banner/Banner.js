@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../../../scss/Home/Banner.scss";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { removeVietnameseTones } from "../../../container/Functionjs";
 import Suggests from "../Suggest/Suggests";
 import { useSelector } from "react-redux";
+import workApi from "../../../../api/workApi";
 export default function Banner() {
 	const [state, setState] = useState({ name: "", address: "" });
 	const [isSuggest, setSuggest] = useState(false);
 	const [ check, setCheck] = useState('');
 	const { name, address } = state;
+	const [data, setData] = useState({});
 	const work = useSelector((state) => state.works.work.data);
 	const loading = useSelector((state) => state.works.loading);
+	const user = JSON.parse(localStorage.getItem('user'));
 	const onchange = (e) => {
 		setCheck(e.target.value);
-		if (e.target.value !== ""){
+		if (e.target.value !== "" && data.rows.length > 0) {
 			setSuggest(true);
 		} else if (e.target.value === ""){
 			setSuggest(false);
@@ -24,6 +27,14 @@ export default function Banner() {
 			[e.target.name]: e.target.value,
 		});
 	};
+
+	useEffect(async() => {
+		const data = await workApi.suggest({userId:user.id});
+		if (data) {
+			setData(data.data);
+		}
+	},[])
+
 	return (
 		<div className="banner">
 			<div className="banner__search">
@@ -64,7 +75,7 @@ export default function Banner() {
 						</Link>
 					</div>
 					{/* Gợi ý công việc khi người dùng search */}
-					{ isSuggest && <Suggests work={work}/> }
+					{ isSuggest && <Suggests work={data}/> }
 					<div className="banner__search--suggestions"></div>
 				</div>
 			</div>

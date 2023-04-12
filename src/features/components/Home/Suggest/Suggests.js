@@ -2,7 +2,6 @@ import React from "react";
 import "../../../scss/Home/Suggests.scss";
 import { useHistory } from "react-router-dom";
 const Suggests = ({work}) => {
-    console.log("work", work);
     const history = useHistory();
     const handleClickItemSuggest = (id) => {
         history.push(`/jobs/work/${id}`);
