@@ -127,16 +127,16 @@ export default function User() {
 						<Table
 							columns={columns}
 							pagination={false}
-							dataSource={user.rows.map((ok, index) => ({
+							dataSource={user && user.rows.map((ok, index) => ({
 								key: index + 1,
 								name: ok.name,
-								authen: formatNameAuthen(ok.roles[0].name),
+								authen: formatNameAuthen(ok?.roles[0]?.name),
 								status: (
 									<div className="action">
 										{ok.status === 1 ? (
 											<Link
 												onClick={
-													ok.roles[0].name === "grant"
+													ok?.roles[0]?.name === "grant"
 														? noShow
 														: () => {
 																handleStatus(ok.status, ok.id);
@@ -145,12 +145,12 @@ export default function User() {
 											>
 												<i
 													className={`far fa-thumbs-up ${
-														ok.roles[0].name === "grant" ? "text-grant" : ""
+														ok?.roles[0]?.name === "grant" ? "text-grant" : ""
 													}`}
 												></i>
 											</Link>
 										) : (
-											<Link onClick={() => handleStatus(ok.status, ok.id)}>
+											<Link onClick={() => handleStatus(ok?.status, ok?.id)}>
 												<i className="far fa-thumbs-down "></i>
 											</Link>
 										)}
@@ -161,13 +161,13 @@ export default function User() {
 										<Link>
 											<i
 												className={`fas fa-user-shield ${
-													ok.roles[0].name === "grant" ? "text-grant" : ""
+													ok?.roles[0]?.name === "grant" ? "text-grant" : ""
 												}`}
 												onClick={
-													ok.roles[0].name === "grant"
+													ok?.roles[0]?.name === "grant"
 														? noShow
 														: () => {
-																showModal(ok.id);
+																showModal(ok?.id);
 														  }
 												}
 											></i>

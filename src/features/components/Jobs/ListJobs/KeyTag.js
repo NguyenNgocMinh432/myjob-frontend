@@ -6,7 +6,7 @@ export default function KeyTag() {
         <div className="box__key">
             <div className="key__title">
                 <div className="key__icon"><i className="fab fa-slack-hash"></i></div>
-                <span>Top tuyển dụng</span>
+                <span className='fw-bold'>Top tuyển dụng</span>
             </div>
             <div className="key__content">
                 <div className="key__tag"><Link to="/jobs">reactjs</Link></div>

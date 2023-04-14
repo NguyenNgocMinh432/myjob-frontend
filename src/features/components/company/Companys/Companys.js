@@ -14,7 +14,7 @@ export default function Companys() {
 	const { page } = state;
 	const dispatch = useDispatch();
 	const actionResult = async (page) => {
-		await dispatch(companyData(page));
+		await dispatch(companyData());
 	};
 	useEffect(() => {
 		localStorage.setItem("pagecompanyHome", page);

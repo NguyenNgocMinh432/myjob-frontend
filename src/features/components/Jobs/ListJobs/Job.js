@@ -150,7 +150,7 @@ export default function Job({ searchData, onTime, onAmout, amount, time }) {
 					<div className="col-md-4">
 						<div className="box__filter">
 							<div className="filter--title">
-								<p>Số lượng tuyển</p>
+								<p className="fw-bold">Số lượng tuyển</p>
 							</div>
 							<div className="filter__content">
 								<Radio.Group onChange={onChangeAmount} value={amount}>
@@ -172,7 +172,7 @@ export default function Job({ searchData, onTime, onAmout, amount, time }) {
 						</div>
 						<div className="box__filter">
 							<div className="filter--title">
-								<p>Thời gian làm việc </p>
+								<p className="fw-bold">Thời gian làm việc </p>
 							</div>
 							<div className="filter__content">
 								<Radio.Group onChange={onChangeTime} value={time}>

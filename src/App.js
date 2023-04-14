@@ -1,6 +1,8 @@
 import { messaging } from "./firebase";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch, useRouteMatch } from "react-router-dom";
+import io from "socket.io-client";
+
 import "./App.scss";
 import Home from "./features/components/Home/Home";
 import Jobs from "./features/components/Jobs/Jobs";

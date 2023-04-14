@@ -19,6 +19,7 @@ import Tag from "../Tag/Tag";
 import AddTypeWork from "../TypeWork/AddTypeWork";
 import TypeWork from "../TypeWork/TypeWork";
 import User from "../User/User";
+import Feedbacks from "../Feedback/Feedbacks";
 export default function Nav() {
 	const match = useRouteMatch();
 	// console.log(match);
@@ -173,6 +174,19 @@ export default function Nav() {
 						>
 							<Link to={`${match.url}/users`}>Cấp quyền</Link>
 						</Menu.Item>
+						{/* Góp ý */}
+						<Menu.Item
+							key="12"
+							icon={
+								state.collapsed === true ? (
+									<i class="fas fa-user-injured"></i>
+								) : (
+									<span className="fas fa-user-injured mr-2"></span>
+								)
+							}
+						>
+							<Link to={`${match.url}/feedbacks`}>Góp ý từ user</Link>
+						</Menu.Item>
 					</Menu>
 				</Sider>
 
@@ -217,6 +231,11 @@ export default function Nav() {
 							<Route exact path={`${match.path}/users`}>
 								<User url={match.url} />
 							</Route>
+
+							<Route exact path={`${match.path}/feedbacks`}>
+								<Feedbacks url={match.url} />
+							</Route>
+
 							<Route exact path={`${match.path}/typeWork`}>
 								<TypeWork url={match.url} />
 							</Route>

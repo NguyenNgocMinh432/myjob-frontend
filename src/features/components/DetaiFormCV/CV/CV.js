@@ -46,7 +46,7 @@ export default function CV({ data }) {
 	}, [data]);
 	return (
 		<div
-			className="container"
+			className="container preview_cv"
 			style={{ marginTop: "1rem", marginBottom: "2rem" }}
 		>
 			{data ? renderHtml(data.content) : ""}

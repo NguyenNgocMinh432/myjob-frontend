@@ -15,6 +15,7 @@ export default function Banner() {
 	const work = useSelector((state) => state.works.work.data);
 	const loading = useSelector((state) => state.works.loading);
 	const user = JSON.parse(localStorage.getItem('user'));
+	
 	const onchange = (e) => {
 		setCheck(e.target.value);
 		if (e.target.value !== "" && data.rows.length > 0) {
@@ -29,9 +30,11 @@ export default function Banner() {
 	};
 
 	useEffect(async() => {
-		const data = await workApi.suggest({userId:user.id});
-		if (data) {
-			setData(data.data);
+		if (user) {
+			const data = await workApi.suggest({userId:user.id});
+			if (data) {
+				setData(data.data);
+			}
 		}
 	},[])
 

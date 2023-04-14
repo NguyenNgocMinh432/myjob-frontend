@@ -149,6 +149,10 @@
 		padding-right: 0;
 	}
 }
+.file {
+	min-width: 172px;
+	text-align: center;
+}
 @media (max-width: 991px) {
 	.apply {
 		position: unset !important;

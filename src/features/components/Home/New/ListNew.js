@@ -36,6 +36,29 @@ export default function ListNew() {
 		autoplay: true,
 		nextArrow: <SampleNextArrow  />,
 		prevArrow: <SamplePrevArrow />,
+		responsive: [
+			{
+			  breakpoint: 1200,
+			  settings: {
+				slidesToShow: 2,
+				slidesToScroll: 1,
+			  },
+			},
+			{
+			  breakpoint: 1008,
+			  settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1,
+			  },
+			},
+			{
+			  breakpoint: 575,
+			  settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1,
+			  },
+			},
+		  ],
 	};
 
 	const dispatch = useDispatch();

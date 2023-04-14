@@ -81,7 +81,7 @@ export default function Mn(props) {
 	};
 	const logOut = (
 		<Menu.Item key="3">
-			<Link to="/" onClick={onLogOut}>
+			<Link to="/login" onClick={onLogOut}>
 				Đăng xuất
 			</Link>
 		</Menu.Item>

@@ -7,7 +7,7 @@ import "../../../scss/DetailCandidate/CandidateContent.scss";
 import KeyTag from "../../Jobs/ListJobs/KeyTag";
 import { useState } from "react";
 import userApi from "../../../../api/userApi";
-export default function CandidateContent({ data }) {
+export default function CandidateContent({ data, dataCV, infoCV }) {
 	const [name, setName] = useState();
 	const [email, setEmail] = useState();
 	const [content, setContent] = useState();
@@ -45,7 +45,6 @@ export default function CandidateContent({ data }) {
 								</div>
 							</div>
 						</div>
-
 						<div className="candidate__box">
 							<div className="candidate__box__title">
 								Giới thiệu
@@ -55,6 +54,80 @@ export default function CandidateContent({ data }) {
 									? renderHTML(data.introduce)
 									: ""}
 							</div>
+						</div>
+						
+						<div className="candidate__box">
+							<div className="candidate__box__title">
+								Mục tiêu
+							</div>
+							<div className="candidate__box__content">
+								{infoCV && infoCV.data.target
+									? renderHTML(infoCV.data.target)
+									: ""}
+							</div>
+						</div>
+
+						<div className="candidate__box">
+							<div className="candidate__box__title">
+								Học vấn
+							</div>
+							<div className="candidate__box__content">
+								{infoCV && infoCV.data.education
+									? renderHTML(infoCV.data.education)
+									: ""}
+							</div>
+						</div>
+
+						<div className="candidate__box">
+							<div className="candidate__box__title">
+								Kinh nghiệm
+							</div>
+							<div className="candidate__box__content">
+								{infoCV && infoCV.data.experience
+									? renderHTML(infoCV.data.experience)
+									: ""}
+							</div>
+						</div>
+
+						<div className="candidate__box">
+							<div className="candidate__box__title">
+								Chứng chỉ
+							</div>
+							<div className="candidate__box__content">
+								{infoCV && infoCV.data.certificate
+									? renderHTML(infoCV.data.certificate)
+									: ""}
+							</div>
+						</div>
+
+						<div className="candidate__box">
+							<div className="candidate__box__title">
+								Sản phẩm đã tham gia
+							</div>
+							<div className="candidate__box__content">
+								{infoCV && infoCV.data.project
+									? renderHTML(infoCV.data.project)
+									: ""}
+							</div>
+						</div>
+
+						<div className="candidate__box">
+							<div className="candidate__box__title">
+								CV online
+							</div>
+							<a href={
+								dataCV && dataCV.length > 0 ? (
+									dataCV[dataCV.length - 1].link
+								) : ""
+							}
+							target="_blank"
+							>
+								{
+									dataCV && dataCV.length > 0 ? (
+										dataCV[dataCV.length - 1].link
+									) : ""
+								}
+							</a>
 						</div>
 					</div>
 					<div className="col-md-4 ">
