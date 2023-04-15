@@ -35,7 +35,7 @@ export default function CandidateContent({ data, dataCV, infoCV }) {
 								<div className="candidateTag d-flex">
 									{data?.tags.length > 0 ? (
 										data.tags.map((ok, index) => (
-											<Link key={index}>{ok.name}</Link>
+											<Link to="" key={index}>{ok.name}</Link>
 										))
 									) : (
 										<span className="text-danger">

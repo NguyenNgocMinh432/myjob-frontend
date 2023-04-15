@@ -179,7 +179,7 @@ export default function Nav() {
 							key="12"
 							icon={
 								state.collapsed === true ? (
-									<i class="fas fa-user-injured"></i>
+									<i className="fas fa-user-injured"></i>
 								) : (
 									<span className="fas fa-user-injured mr-2"></span>
 								)

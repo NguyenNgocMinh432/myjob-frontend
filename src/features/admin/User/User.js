@@ -150,7 +150,7 @@ export default function User() {
 												></i>
 											</Link>
 										) : (
-											<Link onClick={() => handleStatus(ok?.status, ok?.id)}>
+											<Link to="" onClick={() => handleStatus(ok?.status, ok?.id)}>
 												<i className="far fa-thumbs-down "></i>
 											</Link>
 										)}

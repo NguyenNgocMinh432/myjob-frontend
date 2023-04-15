@@ -4,7 +4,7 @@ import "../../../scss/Home/CvHome.scss";
 export default function CvHome() {
 	return (
 		<div className="CvHome">
-			<div class="container">
+			<div className="container">
 				<div className="CvHome__title">
 					<h3>Tạo CV để bắt đầu ứng tuyển</h3>
 				</div>

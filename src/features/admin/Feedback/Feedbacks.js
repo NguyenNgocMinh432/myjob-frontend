@@ -7,7 +7,6 @@ const Feedbacks = () => {
         const dataFeed = await feedBackApi.getFeedback();
         setData(dataFeed);
     }, [])
-    console.log("fff", data)
 	return (
 		<div>
 			<div className="heading">
@@ -17,7 +16,15 @@ const Feedbacks = () => {
 				<div className="heading__hr"></div>
                 <div>
                     {
-
+                        data && data.length > 0 && (
+                            data.map((item,index) => {
+                                return (
+                                    <div key={index}>
+                                        {item.content}
+                                    </div>
+                                )
+                            })
+                        )
                     }
                 </div>
 			</div>

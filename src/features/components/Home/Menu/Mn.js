@@ -1,4 +1,5 @@
-import { Avatar, Dropdown, Menu } from "antd";
+import { Avatar, Dropdown, Menu, Badge, Space } from "antd";
+import Icon, { BellOutlined } from "@ant-design/icons";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import checkLoginApi from "../../../../api/checkLogin";
@@ -30,19 +31,22 @@ export default function Mn(props) {
 	const [user, setUser] = useState();
 	okok(bar_el, nav_el, line_el);
 	useEffect(() => {
-		checkLoginApi.checkLogin().then((ok) => {
-			setUser(ok.data.user);
-			// Lưu user lấy được vào localStorage
-			localStorage.setItem('user', JSON.stringify(ok.data.user));
-		})
-		.catch((err) => {
-			const checkUserFromLocal = JSON.parse(localStorage.getItem('user'));
-			if (checkUserFromLocal) {
-				setUser(checkUserFromLocal);
-			} else {
-
-			}
-		})
+		checkLoginApi
+			.checkLogin()
+			.then((ok) => {
+				setUser(ok.data.user);
+				// Lưu user lấy được vào localStorage
+				localStorage.setItem("user", JSON.stringify(ok.data.user));
+			})
+			.catch((err) => {
+				const checkUserFromLocal = JSON.parse(
+					localStorage.getItem("user")
+				);
+				if (checkUserFromLocal) {
+					setUser(checkUserFromLocal);
+				} else {
+				}
+			});
 		let idClass = pathname.slice(1);
 		let ListMenu = nav_el.current.querySelectorAll(".item");
 		nav_el.current
@@ -101,8 +105,15 @@ export default function Mn(props) {
 			{user ? logOut : ""}
 		</Menu>
 	);
+
+	// Thông báo
+	const notification = (
+		<Menu>
+			<div>Chưa có thông báo nào</div>
+		</Menu>
+	)
 	return (
-		<div className={`${props.class}`}>
+		<div className={`${props.class_menu}`}>
 			<div className="container header__menu">
 				<div className="menu__brand">
 					<Link to="/">
@@ -115,16 +126,16 @@ export default function Mn(props) {
 						<div className="line--mid"></div>
 						<div className="line--bot"></div>
 					</div>
-					<nav ref={nav_el} class="w-50 menu__right--pc">
+					<nav ref={nav_el} className="w-50 menu__right--pc">
 						<div className="item active" id="">
 							<Link to="/">Trang chủ</Link>
 						</div>
 						{/* Là tài khoản user sẽ xem được cộng đồng người dùng web */}
-						{user?.role !== 'grant' && (
+						{user?.role !== "grant" && (
 							<div className="item" id="community">
 								<Link to="/community">Cộng đồng</Link>
 							</div>
-						)} 
+						)}
 						{/* Là tài khoản công ty hoặc admin mới xem được CV */}
 						{user ? (
 							user.role === "admin" || user.role === "grant" ? (
@@ -169,6 +180,19 @@ export default function Mn(props) {
 									src={user ? user.avatar : imgDefault}
 								/>
 							</span>
+						</Dropdown>
+						<Dropdown overlay={notification} trigger={["click"]}>
+							<Space size="large">
+								<Badge count={0}>
+									{/* <Avatar src="https://img.lovepik.com/original_origin_pic/18/03/16/e5e34a246a53695e4a0bc3a147b680df.png_wh860.png" shape="circle" size="small" /> */}
+									<BellOutlined
+										style={{
+											fontSize: "23px",
+											color:"white",
+										}}
+									/>
+								</Badge>
+							</Space>
 						</Dropdown>
 					</nav>
 				</div>

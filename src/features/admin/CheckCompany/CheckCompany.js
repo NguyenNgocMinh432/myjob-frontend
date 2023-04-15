@@ -96,7 +96,7 @@ export default function CheckCompany() {
 												<i className="far fa-thumbs-up "></i>
 											</Link>
 										) : (
-											<Link onClick={() => handleStatus(ok.status, ok.id)} to="" >
+											<Link to="" onClick={() => handleStatus(ok.status, ok.id)} to="" >
 												<i className="fas fa-check"></i>
 											</Link>
 										)}

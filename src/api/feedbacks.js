@@ -15,7 +15,7 @@ class FeedBackApi {
     getFeedback = (params) => {
         const url = '/feedbacks/getAll';
         return axiosClient.get(url).then((response) => {
-            return response
+            return response.data
         })
     }
     // checkLoginUser = (params) => {

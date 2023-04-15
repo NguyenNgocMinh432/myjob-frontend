@@ -7,7 +7,7 @@ export default function ListMenu() {
 	let checkMenu = match.isExact;
 	return (
 		<div>
-			<Mn class={`menu ${checkMenu ? "" : "notMenu"}`} />
+			<Mn class_menu={`menu ${checkMenu ? "" : "notMenu"}`} />
 		</div>
 	);
 }

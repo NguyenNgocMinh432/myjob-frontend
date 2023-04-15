@@ -1,9 +1,8 @@
-import { message } from "antd";
+import { message , Button, notification} from "antd";
 import Modal from "antd/lib/modal/Modal";
 import React, { useEffect, useState } from "react";
 import renderHTML from "react-render-html";
 import { Link } from "react-router-dom";
-import io from "socket.io-client";
 import checkLoginApi from "../../../../api/checkLogin";
 import saveWorkApi from "../../../../api/saveWorkApi";
 import workApplyApi from "../../../../api/workApplyApi";
@@ -16,8 +15,8 @@ import qc from "../../../images/1227.gif";
 import "../../../scss/DetailJob/Jd.scss";
 import KeyTag from "../../Jobs/ListJobs/KeyTag";
 import userApi from "../../../../api/userApi";
+import { socket } from "../../../../socket";
 
-// const socket = io.connect("http://localhost:6666")
 
 export default function Jd(props) {
 	let { data, id } = props;
@@ -123,16 +122,19 @@ export default function Jd(props) {
 		setIsModalVisible(false);
 	};
 	const handleSharePost = () => {
-		// socket.emit('ddax chia se')
+		
 		const url = window.location.href;
 		console.log(url);
 		const dataShare = {
 			userId: getUserFromLocalStorage.id,
+			name: getUserFromLocalStorage.name,
 			title: data.name,
 			address: data.address,
 			url:url
 		}
-		userApi.userShare(dataShare)
+		// userApi.userShare(dataShare)
+		// Gửi thông tin notification lên server
+		socket.emit('share', JSON.stringify(dataShare));
 	}
 	const handleSelectCV =	async() => {
 		if (messager === "") {

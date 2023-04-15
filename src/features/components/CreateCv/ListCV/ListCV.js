@@ -49,13 +49,13 @@ export default function ListCV({ data, loading }) {
 			</div>
 			<div className="container mb-5">
 				<div className="div-btn-cv d-flex justify-content-between">
-					<div class="search">
+					<div className="search">
 						<input
 							type="text"
 							name=""
 							id=""
 							placeholder="Tìm kiếm Cv ....."
-							class="search__input"
+							className="search__input"
 							onChange={(e) => {
 								setValueSearch(e.target.value);
 								if (valueSearch === "") {
@@ -65,14 +65,14 @@ export default function ListCV({ data, loading }) {
 						/>
 						<button
 							type="submit"
-							class="search__button"
+							className="search__button"
 							tabIndex="-1"
 							onClick={handleSearchCV}
 						>
 							Search
 						</button>
 					</div>
-					<Link className="btn-infor-cv" onClick={onClickInforCV}>
+					<Link to="" className="btn-infor-cv" onClick={onClickInforCV}>
 						Điền thông tin CV
 					</Link>
 				</div>

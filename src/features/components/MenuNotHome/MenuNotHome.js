@@ -6,6 +6,6 @@ import "../../scss/MenuNotHome.scss"
 export default function Menu() {
 
     return (
-        <Mn class="menuNotHome" />
+        <Mn className="menuNotHome" />
     )
 }

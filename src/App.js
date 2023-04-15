@@ -1,7 +1,11 @@
 import { messaging } from "./firebase";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Switch, useRouteMatch } from "react-router-dom";
-import io from "socket.io-client";
+import {
+	BrowserRouter as Router,
+	Route,
+	Switch,
+	useRouteMatch,
+} from "react-router-dom";
 
 import "./App.scss";
 import Home from "./features/components/Home/Home";
@@ -29,8 +33,10 @@ import Menu from "./features/components/Home/Menu/Menu";
 import CheckMenu from "./features/components/CheckMenu/CheckMenu";
 import Community from "./features/components/community/community";
 import userApi from "./api/userApi";
+import { connect } from "react-redux";
+import { socket } from "./socket";
+import { notification } from "antd";
 function App() {
-
 	// config phần thông báo
 	// const messaging = getMessaging();
 	// Add the public key generated from the console here.
@@ -41,31 +47,75 @@ function App() {
 	// 		console.log("error không thể get token");
 	// 	}
 	// });
+
+	// socket connect
+
+	const [isConnected, setIsConnected] = useState(socket.connected);
+	const [fooEvents, setFooEvents] = useState([]);
+
+	useEffect(() => {
+		function onConnect() {
+			setIsConnected(true);
+		}
+
+		function onDisconnect() {
+			setIsConnected(false);
+		}
+
+		function onFooEvent(value) {
+			const dataNotification = JSON.parse(value);
+			console.log(dataNotification)
+			if (dataNotification) {
+				notification.open({
+					message: `${dataNotification?.name} đã chia sẻ 1 công việc với bạn`,
+					description:
+					  `${dataNotification?.title} địa chỉ ${dataNotification?.address}`,
+					onClick: () => {
+					  window.location.href = `${dataNotification?.url}`;
+					},
+				});
+				
+			}
+			setFooEvents((previous) => [...previous, value]);
+		}
+
+		socket.on("connect", onConnect);
+		socket.on("disconnect", onDisconnect);
+		socket.on("result", onFooEvent);
+
+		return () => {
+			socket.off("connect", onConnect);
+			socket.off("disconnect", onDisconnect);
+			socket.off("foo", onFooEvent);
+		};
+	}, []);
+
 	const user = JSON.parse(localStorage.getItem("user"));
 	//config phần thông báo
 	useEffect(() => {
-
-		if (Notification.permission === 'granted') {
+		if (Notification.permission === "granted") {
 			// Hiển thị thông báo
-			messaging.requestPermission().then(() => {
-				return messaging.getToken()
-			}).then(async(data) => {
-				console.log("data token thông báo", data);
-				// Đăng ký dữ liệu lên db
-				const dataSendb = {
-					userId: user?.id,
-					token: data
-				}
-				await userApi.postDevice(dataSendb);
-			});
-		  } else if (Notification.permission === 'denied') {
+			messaging
+				.requestPermission()
+				.then(() => {
+					return messaging.getToken();
+				})
+				.then(async (data) => {
+					console.log("data token thông báo", data);
+					// Đăng ký dữ liệu lên db
+					const dataSendb = {
+						userId: user?.id,
+						token: data,
+					};
+					// await userApi.postDevice(dataSendb);
+				});
+		} else if (Notification.permission === "denied") {
 			// Hiển thị thông báo lỗi
-			console.log(" chưa cho quyền thông báo rồi")
-		  } else {
+			console.log(" chưa cho quyền thông báo rồi");
+		} else {
 			// Hiển thị thông báo yêu cầu quyền
-		  }
-		
-	}, [])
+		}
+	}, []);
 
 	useEffect(() => {
 		checkBar();
@@ -73,7 +123,7 @@ function App() {
 
 	const [checkAdmin, setCheckAdmin] = useState();
 	useEffect(() => {
-	/* Checking if the user is admin or not. */
+		/* Checking if the user is admin or not. */
 		checkLoginApi.checkLogin().then((item, index) => {
 			// setUser(item.data.user.role);
 			let user = item.data.user.role;

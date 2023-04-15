@@ -20,7 +20,7 @@ export default function Contact() {
 	}
 	return (
 		<div className="contact">
-			<div class="container">
+			<div className="container">
 				<div className="contact__title">
 					<h3>Liên hệ phản ánh</h3>
 				</div>
