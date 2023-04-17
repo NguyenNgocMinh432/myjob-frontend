@@ -30,6 +30,12 @@ export default function Mn(props) {
 	const line_el = useRef(null);
 	const [user, setUser] = useState();
 	okok(bar_el, nav_el, line_el);
+
+	// Hàm xử lý phần upgrade dữ liệu
+	const onClickUpgrade = () => {
+		alert('Upgrade');
+	}
+
 	useEffect(() => {
 		checkLoginApi
 			.checkLogin()
@@ -53,7 +59,7 @@ export default function Mn(props) {
 			.querySelector(".item.active")
 			?.classList?.remove("active");
 		for (let i = 0; i < ListMenu.length; i++) {
-			if (ListMenu[i].id == idClass) {
+			if (ListMenu[i].id === idClass) {
 				ListMenu[i].classList.add("active");
 			}
 		}
@@ -92,6 +98,16 @@ export default function Mn(props) {
 	);
 	const imgDefault =
 		"https://1.bp.blogspot.com/-m3UYn4_PEms/Xnch6mOTHJI/AAAAAAAAZkE/GuepXW9p7MA6l81zSCnmNaFFhfQASQhowCLcBGAsYHQ/s1600/Cach-Lam-Avatar-Dang-Hot%2B%25281%2529.jpg";
+	
+	// item nâng cấp tài khoản
+	const upgrade = (
+		<Menu.Item key="4">
+			<Link to="" onClick={onClickUpgrade}>
+				Nâng cấp tài khoản
+			</Link>
+		</Menu.Item>
+
+	)
 	const ss = (
 		<Menu>
 			{!user ? (
@@ -102,14 +118,22 @@ export default function Mn(props) {
 				""
 			)}
 			{user ? (user.type === "company" ? inforCompany : inforUser) : ""}
+			{user? upgrade: "" }
 			{user ? logOut : ""}
+			
 		</Menu>
 	);
 
 	// Thông báo
 	const notification = (
 		<Menu>
-			<div>Chưa có thông báo nào</div>
+			{
+				props.count === 0 ? <div>Chưa có thông báo nào</div> : (
+					props.dataNotifications.map((item,index) => {
+						return <div key={index}>{item.title}</div>
+					})
+				)
+			}
 		</Menu>
 	)
 	return (
@@ -183,7 +207,7 @@ export default function Mn(props) {
 						</Dropdown>
 						<Dropdown overlay={notification} trigger={["click"]}>
 							<Space size="large">
-								<Badge count={0}>
+								<Badge count={props.count}>
 									{/* <Avatar src="https://img.lovepik.com/original_origin_pic/18/03/16/e5e34a246a53695e4a0bc3a147b680df.png_wh860.png" shape="circle" size="small" /> */}
 									<BellOutlined
 										style={{

@@ -52,7 +52,9 @@ function App() {
 
 	const [isConnected, setIsConnected] = useState(socket.connected);
 	const [fooEvents, setFooEvents] = useState([]);
-
+	const [count, setCount] = useState(0);
+	// const [dataNotifications, setDataNotifications] = useState([]);
+	let dataNotifications;
 	useEffect(() => {
 		function onConnect() {
 			setIsConnected(true);
@@ -64,8 +66,11 @@ function App() {
 
 		function onFooEvent(value) {
 			const dataNotification = JSON.parse(value);
-			console.log(dataNotification)
 			if (dataNotification) {
+				setCount(prev => prev + 1);
+				// setDataNotifications([...dataNotifications, dataNotification])
+				dataNotifications.push(dataNotification);
+				console.log(dataNotifications);
 				notification.open({
 					message: `${dataNotification?.name} đã chia sẻ 1 công việc với bạn`,
 					description:
@@ -81,7 +86,7 @@ function App() {
 
 		socket.on("connect", onConnect);
 		socket.on("disconnect", onDisconnect);
-		socket.on("result", onFooEvent);
+		socket.on("result 1", onFooEvent);
 
 		return () => {
 			socket.off("connect", onConnect);
@@ -148,7 +153,7 @@ function App() {
 			<Router>
 				<Switch>
 					<Route path={["/admin", "/register", "/Login", "/"]}>
-						<CheckMenu />
+						<CheckMenu count={count} dataNotifications={dataNotifications}/>
 					</Route>
 				</Switch>
 

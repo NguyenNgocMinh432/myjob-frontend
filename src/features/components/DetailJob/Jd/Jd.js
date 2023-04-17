@@ -124,7 +124,6 @@ export default function Jd(props) {
 	const handleSharePost = () => {
 		
 		const url = window.location.href;
-		console.log(url);
 		const dataShare = {
 			userId: getUserFromLocalStorage.id,
 			name: getUserFromLocalStorage.name,
