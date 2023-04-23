@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Divider, List, Typography } from 'antd';
 import feedBackApi from "../../../api/feedbacks";
 
 const Feedbacks = () => {
@@ -17,13 +18,19 @@ const Feedbacks = () => {
                 <div>
                     {
                         data && data.length > 0 && (
-                            data.map((item,index) => {
-                                return (
-                                    <div key={index}>
-                                        {item.content}
-                                    </div>
+                            // data.map((item,index) => {
+                                 (
+                                    // <div key={index}>
+                                    //     {item.content}
+                                    // </div>
+                                    <List
+                                        size="small"
+                                        bordered
+                                        dataSource={data}
+                                        renderItem={(data) => <List.Item>{data.content}</List.Item>}
+                                    />
                                 )
-                            })
+                            // })
                         )
                     }
                 </div>

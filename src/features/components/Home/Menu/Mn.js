@@ -1,7 +1,7 @@
 import { Avatar, Dropdown, Menu, Badge, Space } from "antd";
 import Icon, { BellOutlined } from "@ant-design/icons";
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import checkLoginApi from "../../../../api/checkLogin";
 import {
 	checkBar,
@@ -11,7 +11,10 @@ import {
 } from "../../../container/Functionjs";
 import logo from "../../../images/logossss.png";
 import "../../../scss/Home/Menu.scss";
+import userApi from "../../../../api/userApi";
 export default function Mn(props) {
+	const [notificationData, setNotificationData] = useState([]);
+	
 	const okok = (bar_ref, nav_ref, line_ref) => {
 		setTimeout(() => {
 			lineSlide();
@@ -25,6 +28,7 @@ export default function Mn(props) {
 		}, 500);
 	};
 	let { pathname } = useLocation();
+	// const history = useHistory();
 	const bar_el = useRef(null);
 	const nav_el = useRef(null);
 	const line_el = useRef(null);
@@ -74,6 +78,12 @@ export default function Mn(props) {
 		// 	window.removeEventListener("scroll");
 		// }
 	});
+	// useEffect(() => {
+	// 	if (props.dataNotifications.length > 0) {
+	// 		setNotificationData(props.dataNotifications);
+	// 	}
+	// })
+	console.log(props.dataNotifications)
 	const inforCompany = (
 		<Menu.Item key="1">
 			<Link to="/inforCompany">Thông tin cá nhân</Link>
@@ -125,17 +135,24 @@ export default function Mn(props) {
 	);
 
 	// Thông báo
+	const handleClickSeenNotice = (id, url) => {
+		window.location.href = url;
+		userApi.editNotification({id: id})
+	}
+
 	const notification = (
 		<Menu>
 			{
 				props.count === 0 ? <div>Chưa có thông báo nào</div> : (
-					props.dataNotifications.map((item,index) => {
-						return <div key={index}>{item.title}</div>
+					Array.isArray(props.dataNotifications) && props.dataNotifications.map((item,index) => {
+						return <div key={index} onClick={() => handleClickSeenNotice(item.id,item.link)}>{item.title || item.message}</div>
 					})
 				)
+				
 			}
 		</Menu>
 	)
+	
 	return (
 		<div className={`${props.class_menu}`}>
 			<div className="container header__menu">
@@ -202,6 +219,9 @@ export default function Mn(props) {
 								<Avatar
 									size="small"
 									src={user ? user.avatar : imgDefault}
+									style={{
+										cursor: 'pointer'
+									}}
 								/>
 							</span>
 						</Dropdown>
@@ -213,6 +233,7 @@ export default function Mn(props) {
 										style={{
 											fontSize: "23px",
 											color:"white",
+											cursor: "pointer"
 										}}
 									/>
 								</Badge>

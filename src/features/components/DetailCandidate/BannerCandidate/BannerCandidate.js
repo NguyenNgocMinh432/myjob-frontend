@@ -8,22 +8,27 @@ export default function BannerCompany({ avatar, banner, name, address }) {
 	const [follows, setFollows] = useState(false);
 	const [callApi, setApi] = useState(false);
 	const user = JSON.parse(localStorage.getItem("user"));
-	const checkFollows = user?.follows;
 	const userId = user?.id;
 	const currentUrl = window.location.pathname;
 	const converUrl = currentUrl.split("/");
 	const idUserFollow = Number(converUrl[converUrl.length - 1]);
 	useEffect(() => {
-		if (Array.isArray(checkFollows) && checkFollows.length > 0) {
-			const followUser = checkFollows.filter((item,index) => {
-				return Number(item) === Number(idUserFollow)
-			})
-			if (followUser && followUser.length > 0) {
-				setFollows(true);
+		// Gọi lần nữa api check Info để lưu thông tin lại
+		checkLoginApi.checkLogin().then((ok) => {
+			localStorage.setItem("user", JSON.stringify(ok.data.user));
+			const checkFollows = ok.data.user.follows;
+			if (Array.isArray(checkFollows) && checkFollows.length > 0) {
+				const followUser = checkFollows.filter((item,index) => {
+					return Number(item) === Number(idUserFollow)
+				})
+				if (followUser && followUser.length > 0) {
+					setFollows(true);
+				}
+			} else {
+				setFollows(false);
 			}
-		} else {
-			setFollows(false);
-		}
+		});
+		
 	}, [idUserFollow, callApi])
 	const handleFollowUser = async () => {
 		if (user) {
@@ -33,16 +38,26 @@ export default function BannerCompany({ avatar, banner, name, address }) {
 			};
 			await userApi.postfollows(body).then((data) => {
 				setApi(prev => !prev)
-				setFollows(true);
+				console.log("follows", follows);
 			});
-			// Gọi lần nữa api check Info để lưu thông tin lại
-			checkLoginApi.checkLogin().then((ok) => {
-				localStorage.setItem("user", JSON.stringify(ok.data.user));
-			});
+			
 		} else {
 			message.error("Bạn cần đăng nhập để có thể follow người dùng này");
 		}
 	};
+	const handleUnFollowUser = async() => {
+		if (user) {
+			const body = {
+				user_id: userId,
+				user_id_follows: idUserFollow,
+			};
+			await userApi.deletefollows(body).then((data) => {
+				setApi(prev => !prev)
+			});
+		} else {
+			message.error("Bạn cần đăng nhập để có thể follow người dùng này");
+		}
+	}
 	return (
 		<div
 			className="bannerCompany"
@@ -67,6 +82,7 @@ export default function BannerCompany({ avatar, banner, name, address }) {
 					<div>
 						{/* {user && user.role === "user" && ( */}
 						{!follows ? (
+								user.type !== "company" &&
 							<button
 								id="follow-button"
 								onClick={handleFollowUser}
@@ -76,7 +92,7 @@ export default function BannerCompany({ avatar, banner, name, address }) {
 						) : (
 							<button
 								id="follow-button"
-								// onClick={handleFollowUser}
+								onClick={handleUnFollowUser}
 							>
 								unFollow
 							</button>

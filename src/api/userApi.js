@@ -46,6 +46,14 @@ class UserApi {
             message.error("Có lỗi xảy ra!");
         });
     };
+    deletefollows = (params) => {
+        const url = '/follows/delete';
+        return axiosClient.post(url, params).then(data => {
+            message.success("unFollow Thành công!!");
+        }).catch(err => {
+            message.error("Có lỗi xảy ra!");
+        });
+    }
     deleteuser = (id) => {
         const url = `/users/${id}`;
         return axiosClient.delete(url)
@@ -84,7 +92,20 @@ class UserApi {
         return axiosClient.post(url, data).then(response => {
             message.success("Gửi mail liên hệ thành công");
         });
-    }
+    };
+    getNotification = (params) => {
+        const url = "notifications";
+        return axiosClient.get(url, { params });
+    };
+    editNotification = (params) => {
+        const url = `/notifications/${params.id}`;
+        return axiosClient.patch(url, params).then(data => {
+            message.success("Sửa thành công!");
+        }).catch(err => {
+            message.error("Có lỗi xảy ra!");
+        });
+    };
+
 }
 const userApi = new UserApi();
 export default userApi;

@@ -49,12 +49,11 @@ function App() {
 	// });
 
 	// socket connect
-
+	let dataNotifications = [];
 	const [isConnected, setIsConnected] = useState(socket.connected);
 	const [fooEvents, setFooEvents] = useState([]);
 	const [count, setCount] = useState(0);
-	// const [dataNotifications, setDataNotifications] = useState([]);
-	let dataNotifications;
+	const [dataNotificationSend, setDataNotificationSend] = useState([]);
 	useEffect(() => {
 		function onConnect() {
 			setIsConnected(true);
@@ -74,9 +73,12 @@ function App() {
 				notification.open({
 					message: `${dataNotification?.name} đã chia sẻ 1 công việc với bạn`,
 					description:
-					  `${dataNotification?.title} địa chỉ ${dataNotification?.address}`,
+					  	`${dataNotification?.title} địa chỉ ${dataNotification?.address}`,
 					onClick: () => {
-					  window.location.href = `${dataNotification?.url}`;
+						if (count > 0) {
+							setCount(prev => prev - 1);
+						}
+					  	window.location.href = `${dataNotification?.url}`;
 					},
 				});
 				
@@ -86,7 +88,7 @@ function App() {
 
 		socket.on("connect", onConnect);
 		socket.on("disconnect", onDisconnect);
-		socket.on("result 1", onFooEvent);
+		socket.on(`result ${user.id} `, onFooEvent);
 
 		return () => {
 			socket.off("connect", onConnect);
@@ -145,15 +147,47 @@ function App() {
 					</Route>
 				);
 			}
-		});
+		})
+		.catch(function (err) {
+			const getUsers = JSON.parse(localStorage.getItem('user'));
+			if (getUsers) {
+				let user = getUsers?.role;
+				if (user === "admin" || user === "grant") {
+					setCheckAdmin(
+						<Route path="/admin">
+							<Ladmin />
+						</Route>
+					);
+				} else {
+					setCheckAdmin(
+						<Route path="/admin">
+							<Empty />
+						</Route>
+					);
+				}
+			}
+		})
+		;
 	}, []);
-
+	// Lấy thông tin của notificator user 
+	useEffect(async() => {
+		const dataNotification = await userApi.getNotification({
+			user_id: user.id
+		})
+		if (dataNotification && dataNotification.code === 1) {
+			console.log(111111111111111)
+			setCount(Number(dataNotification.data.length))
+		/* Iterating over the `data` array of `dataNotification` object and pushing each element into the
+		`dataNotifications` array. */
+			setDataNotificationSend(dataNotification.data);
+		}
+	}, [])
 	return (
 		<div>
 			<Router>
 				<Switch>
 					<Route path={["/admin", "/register", "/Login", "/"]}>
-						<CheckMenu count={count} dataNotifications={dataNotifications}/>
+						<CheckMenu count={count} dataNotifications={dataNotifications.length > 0 ? dataNotifications : dataNotificationSend }/>
 					</Route>
 				</Switch>
 
