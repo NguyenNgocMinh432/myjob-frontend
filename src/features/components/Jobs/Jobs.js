@@ -7,8 +7,11 @@ import MenuNotHome from "../MenuNotHome/MenuNotHome";
 import Breadcrumbs from "./Breadcrumb/Breadcrumb";
 import Job from "./ListJobs/Job";
 import Search from "./Search/Search";
+import { useParams } from "react-router-dom";
 export default function Jobs() {
-	const user = JSON.parse(localStorage.getItem('user'));
+	const { id } = useParams();
+
+	const user = JSON.parse(localStorage.getItem("user"));
 
 	const [state, setState] = useState({
 		userId: user?.id,
@@ -34,12 +37,20 @@ export default function Jobs() {
 		setAmount(e);
 	};
 	useEffect(async () => {
-		await workApi.search({ name: name, nature: time, address: address, status: 1, userId: userId }).then((ok) => {
-			setState({
-				...state,
-				data: ok.data,
+		await workApi
+			.search({
+				name: name,
+				nature: time,
+				address: address,
+				status: 1,
+				userId: userId,
+			})
+			.then((ok) => {
+				setState({
+					...state,
+					data: ok.data,
+				});
 			});
-		});
 		window.scrollTo(0, 0);
 	}, [name, address, time]);
 	return (
@@ -47,13 +58,33 @@ export default function Jobs() {
 			{/* <MenuNotHome /> */}
 			<Breadcrumbs />
 			<Search onchange={hangdelOnChange} />
-			<Job
-				searchData={name === "" && address === "" && time === "0" ? "" : data}
-				onAmout={onChangeAmount}
-				onTime={onChangeTime}
-				time={time}
-				amount={amount}
-			/>
+			{id ? (
+				<Job
+					searchData={
+						name === "" && address === "" && time === "0"
+							? ""
+							: data
+					}
+					onAmout={onChangeAmount}
+					onTime={onChangeTime}
+					time={time}
+					amount={amount}
+					id={id}
+				/>
+			) : (
+				<Job
+					searchData={
+						name === "" && address === "" && time === "0"
+							? ""
+							: data
+					}
+					onAmout={onChangeAmount}
+					onTime={onChangeTime}
+					time={time}
+					amount={amount}
+				/>
+			)}
+
 			<ListNew />
 			<Footer />
 		</div>

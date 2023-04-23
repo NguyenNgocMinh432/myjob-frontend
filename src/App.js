@@ -202,6 +202,9 @@ function App() {
 					<Route exact path="/jobs">
 						<Jobs />
 					</Route>
+					<Route exact path="/jobs/:id">
+						<Jobs />
+					</Route>
 					<Route exact path="/news">
 						<ListNews />
 					</Route>

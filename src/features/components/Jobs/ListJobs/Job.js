@@ -8,8 +8,12 @@ import { formatDateWork } from "../../../container/Functionjs";
 import "../../../scss/SearchJobs/ListJob.scss";
 import SpinLoad from "../../Spin/Spin";
 import KeyTag from "./KeyTag";
-export default function Job({ searchData, onTime, onAmout, amount, time }) {
-	const work = useSelector((state) => state.works.work.data);
+import typeWorkApi from "../../../../api/typeWorkApi";
+export default function Job({ searchData, onTime, onAmout, amount, time, id }) {
+
+	const [workType, setWorkType] = useState({});
+	const [check, setCheck] = useState(false);
+	let work = useSelector((state) => state.works.work.data);
 	const loading = useSelector((state) => state.works.loading);
 	const dispatch = useDispatch();
 	const [state, setState] = useState({ page: localStorage.getItem("pageWorkHome") || 1 });
@@ -23,6 +27,30 @@ export default function Job({ searchData, onTime, onAmout, amount, time }) {
 	const actionResult = async (page) => {
 		await dispatch(workData(page));
 	};
+	// Lấy type của works
+	let render = false;
+	useEffect(async() => {
+		let data = await typeWorkApi.getWorks(id);
+		console.log('data works lấy về', data);
+		setWorkType({rows: data});
+		setCheck(true);
+		// const dataFilter = data && data.data.rows;
+		// const dataCheck = dataFilter.filter((item,index) => {
+		// 	return item.id === Number(id);
+		// })
+		// const workCheck = dataCheck[0].works
+		// console.log("workCheck", dataCheck)
+		// const dataWorks = workCheck.filter((item,index) => {
+		// 	return work && work.rows.filter((item2) => {
+		// 		return item.id = item2.id
+		// 	})
+		// });
+		// console.log("dataCheck", dataWorks)
+		render= true;
+	},[check, render])
+
+	console.log("stateWork", workType);
+
 	useEffect(() => {
 		localStorage.setItem("pageWorkHome", page);
 		actionResult({ page: page, status: 1 });
@@ -33,6 +61,8 @@ export default function Job({ searchData, onTime, onAmout, amount, time }) {
 	const onChangeAmount = (e) => {
 		onAmout(e.target.value);
 	};
+	const handleData = work.rows 
+	console.log('handleData', handleData);
 	return (
 		<div className="ListJobSearch">
 			<div className="container">
@@ -42,7 +72,7 @@ export default function Job({ searchData, onTime, onAmout, amount, time }) {
 							loading ? (
 								<SpinLoad />
 							) : (
-								work.rows.map((data, index) => (
+								handleData.map((data, index) => (
 									<div className="job__box" key={index}>
 										<div className="job__tag">hot</div>
 										<div className="job__logo">

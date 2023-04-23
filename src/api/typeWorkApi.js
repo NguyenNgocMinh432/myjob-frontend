@@ -12,6 +12,12 @@ class TypeWorkApi {
 			return data.data;
 		});
 	};
+	getWorks = (params) => {
+		const url = `/typeWorks/works/${params}`;
+		return axiosClient.get(url).then((data) => {
+			return data.data;
+		});
+	};
 	posttypeWork = (params) => {
 		const url = "/typeWorks";
 		return axiosClient

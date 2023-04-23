@@ -19,7 +19,7 @@ export default function CandidateContent({ data, dataCV, infoCV }) {
 			yourEmail: data.email,
 			content_email:content,
 			title,
-			name
+			// name
 		}
 		await userApi.userSendMail(dataSendEmail);
 	}
@@ -213,20 +213,20 @@ export default function CandidateContent({ data, dataCV, infoCV }) {
 							</div>
 							<div className="candidate__box__email">
 								<form>
-									<input
+									{/* <input
 										type="text"
 										name="yourName"
 										placeholder="Tên của bạn"
 										value={name}
 										onChange={(e) => setName(e.target.value)}
-									/>
-									<input
+									/> */}
+									{/* <input
 										type="text"
 										name="yourEmail"
 										placeholder="Email của bạn"
 										value={email}
 										onChange={(e) => setEmail(e.target.value)}
-									/>
+									/> */}
 									<input
 										type="text"
 										name="title"

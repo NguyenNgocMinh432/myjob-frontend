@@ -121,12 +121,13 @@ export const checkStatus = (e) => {
 	}
 };
 export const GetCategoryHome = (e) => {
-	let list = e.rows;
-	if (list.length !== 0) {
+	let list = e && e.rows;
+	if (list && list.length !== 0) {
 		let data = [];
 		let result = [];
 		for (let i = 0; i < list.length; i++) {
 			data.push({
+				typeId: list[i].id,
 				name: list[i].name,
 				icon: list[i].icon,
 				length: list[i]?.works?.length,
