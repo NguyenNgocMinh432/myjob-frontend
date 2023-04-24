@@ -82,7 +82,7 @@ export default function BannerCompany({ avatar, banner, name, address }) {
 					<div>
 						{/* {user && user.role === "user" && ( */}
 						{!follows ? (
-								user.type !== "company" &&
+								user && user.type !== "company" &&
 							<button
 								id="follow-button"
 								onClick={handleFollowUser}

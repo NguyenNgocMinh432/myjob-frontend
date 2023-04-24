@@ -54,6 +54,7 @@ export default function Login() {
 								localStorage.setItem("token", data);
 								message.success("Đăng nhập thành công!");
 								history.push("/");
+								// window.location.href = "/";
 							}
 						});
 				} else {
@@ -61,6 +62,7 @@ export default function Login() {
 					localStorage.setItem("token", res);
 					message.success("Đăng nhập thành công!");
 					history.push("/");
+					// window.location.href = "/";
 				}
 			});
 	};
@@ -102,7 +104,7 @@ export default function Login() {
 								? "Mật khẩu ít nhất 4 ký tự và không quá 20 ký tự"
 								: ""}
 						</p>
-						<Checkbox>Nhớ mật khẩu</Checkbox>
+						{/* <Checkbox>Nhớ mật khẩu</Checkbox> */}
 						<div className="login__box__left__button">
 							<input type="submit" value="Đăng nhập" />
 						</div>

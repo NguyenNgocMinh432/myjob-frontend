@@ -122,18 +122,22 @@ export default function Jd(props) {
 		setIsModalVisible(false);
 	};
 	const handleSharePost = () => {
-		
-		const url = window.location.href;
-		const dataShare = {
-			userId: getUserFromLocalStorage.id,
-			name: getUserFromLocalStorage.name,
-			title: data.name,
-			address: data.address,
-			url:url
+		if (getUserFromLocalStorage) {
+			const url = window.location.href;
+			const dataShare = {
+				userId: getUserFromLocalStorage.id,
+				name: getUserFromLocalStorage.name,
+				title: data.name,
+				address: data.address,
+				url:url
+			}
+			// userApi.userShare(dataShare)
+			// Gửi thông tin notification lên server
+			socket.emit('share', JSON.stringify(dataShare));
+		} else {
+			message.warning("Bạn chưa đăng nhập !!!!")
 		}
-		// userApi.userShare(dataShare)
-		// Gửi thông tin notification lên server
-		socket.emit('share', JSON.stringify(dataShare));
+	
 	}
 	const handleSelectCV =	async() => {
 		if (messager === "") {

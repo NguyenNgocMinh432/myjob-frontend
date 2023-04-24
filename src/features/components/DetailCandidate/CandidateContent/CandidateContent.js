@@ -7,7 +7,10 @@ import "../../../scss/DetailCandidate/CandidateContent.scss";
 import KeyTag from "../../Jobs/ListJobs/KeyTag";
 import { useState } from "react";
 import userApi from "../../../../api/userApi";
+import { message } from "antd";
 export default function CandidateContent({ data, dataCV, infoCV }) {
+	// Check user đã đăng nhập hay chưa
+	const user = JSON.parse(localStorage.getItem("user"));
 	const [name, setName] = useState();
 	const [email, setEmail] = useState();
 	const [content, setContent] = useState();
@@ -15,13 +18,17 @@ export default function CandidateContent({ data, dataCV, infoCV }) {
 	// Xử lý phần sendEmail
 	const handleSendMail =  async(e) => {
 		e.preventDefault();
-		const dataSendEmail = {
-			yourEmail: data.email,
-			content_email:content,
-			title,
-			// name
+		if (user) {
+			const dataSendEmail = {
+				yourEmail: data.email,
+				content_email:content,
+				title,
+				// name
+			}
+			await userApi.userSendMail(dataSendEmail);
+		} else {
+			message.error("Bạn chưa đăng nhập!!!")
 		}
-		await userApi.userSendMail(dataSendEmail);
 	}
 
 	return (

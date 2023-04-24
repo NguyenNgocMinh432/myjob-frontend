@@ -54,12 +54,16 @@ export default function DetaiFormCV() {
 			<Breadcrumb name={data ? data.name : ""} />
 			<div className="container">
 				<div className="d-flex justify-content-end p-2">
-					<button className="btn-primary p-2 w-10" onClick={handleClickCV}>
+					<button className="btn-primary p-2 w-10" onClick={handleClickCV} style={{
+						minWidth: "120px"
+					}}>
 						Chọn Mẫu CV
 					</button>
 				</div>
 				<div className="d-flex justify-content-end p-2 ">
-					<button className="btn-primary p-2" onClick={handleDownCV}>
+					<button className="btn-primary p-2" onClick={handleDownCV} style={{
+						minWidth: "120px"
+					}}>
 						Tải CV
 					</button>
 				</div>

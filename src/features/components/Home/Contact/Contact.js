@@ -1,21 +1,26 @@
 import React, { useState } from "react";
 import "../../../scss/Home/Contact.scss";
 import feedBackApi from "../../../../api/feedbacks";
+import { message } from "antd";
 export default function Contact() {
 	const [valueFeedback, setValueFeedback] = useState();
 
 	const user = JSON.parse(localStorage.getItem('user'));
 
 	const handleSendFeedback = async () => {
-		const responseFeedback = await feedBackApi.create(
-			{
-				user_id: user && user.id,
-				content: valueFeedback
+		if (user) {
+			const responseFeedback = await feedBackApi.create(
+				{
+					user_id: user && user.id,
+					content: valueFeedback
+				}
+			)
+	
+			if (responseFeedback && responseFeedback.code === 1) {
+				alert('Gửi góp ý thành công !! Xin cảm ơn bạn')
 			}
-		)
-
-		if (responseFeedback && responseFeedback.code === 1) {
-			alert('Gửi góp ý thành công !! Xin cảm ơn bạn')
+		} else {
+			message.error("Bạn chưa đăng nhập !!!!!!!!!");
 		}
 	}
 	return (

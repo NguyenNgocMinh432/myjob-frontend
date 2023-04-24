@@ -30,9 +30,9 @@ export default function DetailNew() {
 	}, []);
 
 	useEffect(async() => {
-		const data = await workApi.suggest({userId:user.id});
+		const data = await workApi.suggest({userId:user && user.id});
 		if (data) {
-			setDataWorkSuggest(data.data.rows);
+			setDataWorkSuggest(data.data && data.data.rows);
 		}
 	},[news, dataNews])
 

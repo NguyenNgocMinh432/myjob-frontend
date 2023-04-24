@@ -11,7 +11,7 @@ import KeyTag from "./KeyTag";
 import typeWorkApi from "../../../../api/typeWorkApi";
 export default function Job({ searchData, onTime, onAmout, amount, time, id }) {
 
-	const [workType, setWorkType] = useState({});
+	const [workType, setWorkType] = useState();
 	const [check, setCheck] = useState(false);
 	let work = useSelector((state) => state.works.work.data);
 	const loading = useSelector((state) => state.works.loading);
@@ -61,8 +61,7 @@ export default function Job({ searchData, onTime, onAmout, amount, time, id }) {
 	const onChangeAmount = (e) => {
 		onAmout(e.target.value);
 	};
-	const handleData = work.rows 
-	console.log('handleData', handleData);
+	
 	return (
 		<div className="ListJobSearch">
 			<div className="container">
@@ -72,7 +71,7 @@ export default function Job({ searchData, onTime, onAmout, amount, time, id }) {
 							loading ? (
 								<SpinLoad />
 							) : (
-								handleData.map((data, index) => (
+								work.rows.map((data, index) => (
 									<div className="job__box" key={index}>
 										<div className="job__tag">hot</div>
 										<div className="job__logo">
@@ -178,7 +177,7 @@ export default function Job({ searchData, onTime, onAmout, amount, time, id }) {
 						)}
 					</div>
 					<div className="col-md-4">
-						<div className="box__filter">
+						{/* <div className="box__filter">
 							<div className="filter--title">
 								<p className="fw-bold">Số lượng tuyển</p>
 							</div>
@@ -199,7 +198,7 @@ export default function Job({ searchData, onTime, onAmout, amount, time, id }) {
 									<Radio value="15">15 nhân viên</Radio>
 								</Radio.Group>
 							</div>
-						</div>
+						</div> */}
 						<div className="box__filter">
 							<div className="filter--title">
 								<p className="fw-bold">Thời gian làm việc </p>

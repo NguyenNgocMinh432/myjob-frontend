@@ -33,9 +33,10 @@ import Menu from "./features/components/Home/Menu/Menu";
 import CheckMenu from "./features/components/CheckMenu/CheckMenu";
 import Community from "./features/components/community/community";
 import userApi from "./api/userApi";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { socket } from "./socket";
 import { notification } from "antd";
+import { workData } from "./features/admin/Slice/workSlice";
 function App() {
 	// config phần thông báo
 	// const messaging = getMessaging();
@@ -54,6 +55,7 @@ function App() {
 	const [fooEvents, setFooEvents] = useState([]);
 	const [count, setCount] = useState(0);
 	const [dataNotificationSend, setDataNotificationSend] = useState([]);
+	const dispatch = useDispatch();
 	useEffect(() => {
 		function onConnect() {
 			setIsConnected(true);
@@ -85,10 +87,12 @@ function App() {
 			}
 			setFooEvents((previous) => [...previous, value]);
 		}
-
-		socket.on("connect", onConnect);
-		socket.on("disconnect", onDisconnect);
-		socket.on(`result ${user.id} `, onFooEvent);
+		//Nếu có user thì mới connect để lấy thông báo
+		if (user) {
+			socket.on("connect", onConnect);
+			socket.on("disconnect", onDisconnect);
+			socket.on(`result ${user && user.id} `, onFooEvent);
+		}
 
 		return () => {
 			socket.off("connect", onConnect);
@@ -172,16 +176,22 @@ function App() {
 	// Lấy thông tin của notificator user 
 	useEffect(async() => {
 		const dataNotification = await userApi.getNotification({
-			user_id: user.id
+			user_id: user && user.id
 		})
 		if (dataNotification && dataNotification.code === 1) {
-			console.log(111111111111111)
 			setCount(Number(dataNotification.data.length))
 		/* Iterating over the `data` array of `dataNotification` object and pushing each element into the
 		`dataNotifications` array. */
 			setDataNotificationSend(dataNotification.data);
 		}
 	}, [])
+
+	useEffect(() => {
+        const actionResult = async (page) => {
+            await dispatch(workData(page));
+        };
+        actionResult();
+    },[])
 	return (
 		<div>
 			<Router>

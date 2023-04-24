@@ -20,6 +20,7 @@ import AddTypeWork from "../TypeWork/AddTypeWork";
 import TypeWork from "../TypeWork/TypeWork";
 import User from "../User/User";
 import Feedbacks from "../Feedback/Feedbacks";
+import CheckCompanyPost from "../CheckCompanyPost/CheckCompanyPost";
 export default function Nav() {
 	const match = useRouteMatch();
 	// console.log(match);
@@ -54,7 +55,7 @@ export default function Nav() {
 						</Link>
 					</div>
 					<Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-						<Menu.Item
+						{/* <Menu.Item
 							key="1"
 							icon={
 								state.collapsed === true ? (
@@ -65,7 +66,7 @@ export default function Nav() {
 							}
 						>
 							<Link to="/admin">Doanh thu</Link>
-						</Menu.Item>
+						</Menu.Item> */}
 						<Menu.Item
 							key="4"
 							icon={
@@ -78,6 +79,20 @@ export default function Nav() {
 						>
 							<Link to={`${match.url}/checkCompany`}>Kiểm tra tài khoản</Link>
 						</Menu.Item>
+
+						<Menu.Item
+							key="1"
+							icon={
+								state.collapsed === true ? (
+									<span className="fas fa-check"></span>
+								) : (
+									<span className="fas fa-check mr-2"></span>
+								)
+							}
+						>
+							<Link to={`${match.url}/checkCompanyPost`}>Kiểm duyệt bài đăng tuyển dụng</Link>
+						</Menu.Item>
+
 						<Menu.Item
 							key="3"
 							icon={
@@ -241,6 +256,10 @@ export default function Nav() {
 							</Route>
 							<Route exact path={`${match.path}/checkCompany`}>
 								<CheckCompany url={match.url} />
+							</Route>
+							{/* Kiểm duyệt bài đăng */}
+							<Route exact path={`${match.path}/checkCompanyPost`}>
+								<CheckCompanyPost url={match.url} />
 							</Route>
 							<Route path={`${match.path}/formCV/addFormCV`}>
 								<AddFormCv url={match.url} />

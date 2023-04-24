@@ -63,7 +63,7 @@ export default function New(props) {
 							</div>
 							<div className="box__recruitment__content">
 								{
-									props.dataWorkSuggest.length > 0 && props.dataWorkSuggest?.map((item, index) => {
+									(props.dataWorkSuggest && props.dataWorkSuggest.length > 0) && props.dataWorkSuggest?.map((item, index) => {
 										return <div className="box__new">
 											<div className="icon__new">
 												<img src={item.company.avatar} alt="" />

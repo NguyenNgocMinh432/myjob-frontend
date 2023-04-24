@@ -11,14 +11,15 @@ export default function Banner() {
 	const [isSuggest, setSuggest] = useState(false);
 	const [ check, setCheck] = useState('');
 	const { name, address } = state;
-	const [data, setData] = useState({});
+	const [data, setData] = useState();
 	const work = useSelector((state) => state.works.work.data);
 	const loading = useSelector((state) => state.works.loading);
 	const user = JSON.parse(localStorage.getItem('user'));
 	
 	const onchange = (e) => {
 		setCheck(e.target.value);
-		if (e.target.value !== "" && data.rows.length > 0) {
+		console.log("data =======",data)
+		if (e.target.value !== "" && (data && data.rows.length > 0)) {
 			setSuggest(true);
 		} else if (e.target.value === ""){
 			setSuggest(false);

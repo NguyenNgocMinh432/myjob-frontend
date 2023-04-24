@@ -2,7 +2,7 @@ import { Pagination, Spin, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
-import { removework, updatework, workData } from "../Slice/workSlice";
+import { removework, updatework, workData, workDataCheck } from "../Slice/workSlice";
 export default function Work() {
 	const columns = [
 		{
@@ -25,6 +25,8 @@ export default function Work() {
 	const { page } = state;
 	const actionResult = async (page) => {
 		await dispatch(workData(page));
+		await dispatch(workDataCheck(page));
+
 	};
 	useEffect(() => {
 		localStorage.setItem("pagework", page);

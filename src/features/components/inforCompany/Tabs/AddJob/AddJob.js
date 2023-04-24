@@ -76,7 +76,7 @@ export default function AddJob({ id }) {
 				workType: workType,
 				companyId: id,
 				name: data.name,
-				status: 1,
+				status: 0,
 				price1,
 				price2,
 				request,

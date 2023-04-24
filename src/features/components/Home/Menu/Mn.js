@@ -1,4 +1,4 @@
-import { Avatar, Dropdown, Menu, Badge, Space } from "antd";
+import { Avatar, Dropdown, Menu, Badge, Space, message } from "antd";
 import Icon, { BellOutlined } from "@ant-design/icons";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
@@ -33,6 +33,7 @@ export default function Mn(props) {
 	const nav_el = useRef(null);
 	const line_el = useRef(null);
 	const [user, setUser] = useState();
+	const history = useHistory();
 	okok(bar_el, nav_el, line_el);
 
 	// Hàm xử lý phần upgrade dữ liệu
@@ -152,7 +153,7 @@ export default function Mn(props) {
 			}
 		</Menu>
 	)
-	
+
 	return (
 		<div className={`${props.class_menu}`}>
 			<div className="container header__menu">
@@ -199,7 +200,7 @@ export default function Mn(props) {
 						{/* Check điều kiện là use thường mơi cho phép tạo cv */}
 						{user && user.role === "user" && (
 							<div className="item">
-								<Link to="/createCv">Tạo CV</Link>
+								<Link to="/createCV" >Tạo CV</Link>
 							</div>
 						)}
 						<div className="line_slide" ref={line_el}></div>
