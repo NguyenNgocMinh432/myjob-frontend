@@ -103,30 +103,30 @@ function App() {
 
 	const user = JSON.parse(localStorage.getItem("user"));
 	//config phần thông báo
-	useEffect(() => {
-		if (Notification.permission === "granted") {
-			// Hiển thị thông báo
-			messaging
-				.requestPermission()
-				.then(() => {
-					return messaging.getToken();
-				})
-				.then(async (data) => {
-					console.log("data token thông báo", data);
-					// Đăng ký dữ liệu lên db
-					const dataSendb = {
-						userId: user?.id,
-						token: data,
-					};
-					// await userApi.postDevice(dataSendb);
-				});
-		} else if (Notification.permission === "denied") {
-			// Hiển thị thông báo lỗi
-			console.log(" chưa cho quyền thông báo rồi");
-		} else {
-			// Hiển thị thông báo yêu cầu quyền
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (Notification.permission === "granted") {
+	// 		// Hiển thị thông báo
+	// 		messaging
+	// 			.requestPermission()
+	// 			.then(() => {
+	// 				return messaging.getToken();
+	// 			})
+	// 			.then(async (data) => {
+	// 				console.log("data token thông báo", data);
+	// 				// Đăng ký dữ liệu lên db
+	// 				const dataSendb = {
+	// 					userId: user?.id,
+	// 					token: data,
+	// 				};
+	// 				// await userApi.postDevice(dataSendb);
+	// 			});
+	// 	} else if (Notification.permission === "denied") {
+	// 		// Hiển thị thông báo lỗi
+	// 		console.log(" chưa cho quyền thông báo rồi");
+	// 	} else {
+	// 		// Hiển thị thông báo yêu cầu quyền
+	// 	}
+	// }, []);
 
 	useEffect(() => {
 		checkBar();

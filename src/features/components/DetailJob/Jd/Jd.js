@@ -1,4 +1,4 @@
-import { message , Button, notification} from "antd";
+import { message, Button, notification } from "antd";
 import Modal from "antd/lib/modal/Modal";
 import React, { useEffect, useState } from "react";
 import renderHTML from "react-render-html";
@@ -16,7 +16,6 @@ import "../../../scss/DetailJob/Jd.scss";
 import KeyTag from "../../Jobs/ListJobs/KeyTag";
 import userApi from "../../../../api/userApi";
 import { socket } from "../../../../socket";
-
 
 export default function Jd(props) {
 	let { data, id } = props;
@@ -129,17 +128,16 @@ export default function Jd(props) {
 				name: getUserFromLocalStorage.name,
 				title: data.name,
 				address: data.address,
-				url:url
-			}
+				url: url,
+			};
 			// userApi.userShare(dataShare)
 			// Gửi thông tin notification lên server
-			socket.emit('share', JSON.stringify(dataShare));
+			socket.emit("share", JSON.stringify(dataShare));
 		} else {
-			message.warning("Bạn chưa đăng nhập !!!!")
+			message.warning("Bạn chưa đăng nhập !!!!");
 		}
-	
-	}
-	const handleSelectCV =	async() => {
+	};
+	const handleSelectCV = async () => {
 		if (messager === "") {
 			message.warning("Bạn cần nhập lời nhắn!");
 		} else {
@@ -160,7 +158,7 @@ export default function Jd(props) {
 			setIsModalVisible(false);
 			setConfirmLoading(false);
 		}
-	}
+	};
 	return (
 		<div className="Jd">
 			<Modal
@@ -226,24 +224,44 @@ export default function Jd(props) {
 								</div>
 
 								{/* Sửa phần giao diện */}
-								<div className="div__button">
-									<div
-										className="apply"
-										onClick={() =>
-											showModal(
-												checkDateDealtime(data.dealtime)
-											)
-										}
-									>
-										<Link>Ứng tuyển ngay</Link>
+								{getUserFromLocalStorage &&
+								(getUserFromLocalStorage.role === "admin" ||
+									getUserFromLocalStorage.role === "grant") ? (
+									<div className="div__button">
+										<div
+											className="apply"
+
+										>
+											<Link to="/admin/checkCompanyPost">Duyệt bài</Link>
+										</div>
+										<div
+											className="apply__left"
+										>
+											<Link to="/admin/checkCompanyPost">Xóa</Link>
+										</div>
 									</div>
-									<div
-										className="apply__left"
-										onClick={handleSharePost}
-									>
-										<span>Chia sẻ</span>
+								) : (
+									<div className="div__button">
+										<div
+											className="apply"
+											onClick={() =>
+												showModal(
+													checkDateDealtime(
+														data.dealtime
+													)
+												)
+											}
+										>
+											<Link>Ứng tuyển ngay</Link>
+										</div>
+										<div
+											className="apply__left"
+											onClick={handleSharePost}
+										>
+											<span>Chia sẻ</span>
+										</div>
 									</div>
-								</div>
+								)}
 							</div>
 						</div>
 						<div className="job__box">

@@ -7,6 +7,7 @@ import { removecheckCompany, checkCompanyData, updatecheckCompany } from "../Sli
 import { updatecompany } from "../Slice/companySlice";
 import { removework, updatework, workDataCheck } from "../Slice/workSlice";
 export default function CheckCompanyPost() {
+	const history = useHistory();
 	const columns = [
 		{
 			title: "Bài tuyển dụng",
@@ -70,6 +71,11 @@ export default function CheckCompanyPost() {
 			actionResult({ page: page });
 		}, 500);
 	};
+	const handleClickCheckJobs = (id,e) => {
+		e.preventDefault();
+		// history.push(`jobs/work/${id}`)
+		window.location.href= `http://localhost:3000/jobs/work/${id}`
+	}
 	return (
 		<div id="admin">
 			<div className="heading">
@@ -90,7 +96,13 @@ export default function CheckCompanyPost() {
 							pagination={false}
 							dataSource={work && work.rows.map((ok, index) => ({
 								key: index + 1,
-								name: ok.name,
+								name: (
+									<div>
+										<Link to="" onClick={(e) => handleClickCheckJobs(ok.id, e)}>
+											{ok.name}
+										</Link>
+									</div>
+								),
 								email: ok.email,
 								status: (
 									<div className="action">

@@ -8,7 +8,7 @@ import { updatecompany } from "../Slice/companySlice";
 export default function CheckCompany() {
 	const columns = [
 		{
-			title: "tên tin tức",
+			title: "tên tài khoản",
 			dataIndex: "name",
 		},
 		{
