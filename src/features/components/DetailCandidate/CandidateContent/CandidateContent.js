@@ -8,6 +8,7 @@ import KeyTag from "../../Jobs/ListJobs/KeyTag";
 import { useState } from "react";
 import userApi from "../../../../api/userApi";
 import { message } from "antd";
+import workApplyApi from "../../../../api/workApplyApi";
 export default function CandidateContent({ data, dataCV, infoCV }) {
 	// Check user đã đăng nhập hay chưa
 	const user = JSON.parse(localStorage.getItem("user"));
@@ -26,6 +27,7 @@ export default function CandidateContent({ data, dataCV, infoCV }) {
 				// name
 			}
 			await userApi.userSendMail(dataSendEmail);
+			await workApplyApi.editStatusCvWork({id: data && data.id});
 		} else {
 			message.error("Bạn chưa đăng nhập!!!")
 		}

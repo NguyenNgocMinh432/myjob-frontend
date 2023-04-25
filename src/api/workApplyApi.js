@@ -47,6 +47,14 @@ class WorkApplyApi {
         }).catch(err => {
             message.error("Có lỗi xảy ra!");
         });
+    };
+    editStatusCvWork = (params) => {
+        const url = `/workApplys/cvs/${params.id}`;
+        return axiosClient.patch(url, params).then(data => {
+            message.success("update thành công!");
+        }).catch(err => {
+            message.error("Có lỗi xảy ra!");
+        });
     }
 }
 const workApplyApi = new WorkApplyApi();

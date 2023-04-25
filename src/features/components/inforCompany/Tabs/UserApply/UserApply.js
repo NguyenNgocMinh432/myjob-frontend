@@ -8,7 +8,7 @@ export default function UserApply({ id }) {
 	const [data, setData] = useState();
 	const getApi = async () => {
 		await workApplyApi.checkWorkApply(id).then((data) => {
-			console.log("check user ứng tuyển", data)
+			console.log("check user ứng tuyển", data.works);
 			setData(data.works);
 		});
 	};
@@ -21,6 +21,7 @@ export default function UserApply({ id }) {
 	const handleSendEmail = () => {
 		alert("gửi tin nhắn thành côgn")
 	}
+	
 	return (
 		<div className="userApply">
 			<div className="heading">
@@ -78,23 +79,33 @@ export default function UserApply({ id }) {
 																<td>{oki.male}</td>
 															</tr>
 														</table>
-														{oki?.workApplies?.link ? (
+														{oki?.workapplies?.link ? (
 															<button
 																className="btn-link"
 																onClick={() => {
-																	window.open(oki.workApplies.link);
+																	window.open(oki?.workapplies?.link);
 																}}
 															>
-																Xem CV
+																xem cv
 															</button>
 														) : (
 															""
 														)}
-														<Popover content={oki?.workApplies?.message} title="Lời nhắn">
+														{/* Trạng thái */}
+														<div className="d-flex justify-content-end">
+															<span className="fw-bold">Trạng thái: </span>
+															<span>
+																{
+																	oki?.workapplies?.status === 0 ? "Chưa xem" : "Đợi phản hồi"
+																}
+															</span>
+														</div>
+														{/* <Popover content={oki?.workApplies?.message} title="Lời nhắn">
 															<button className="btn-message" onClick={handleSendEmail}>
 																<i className="fas fa-comment-dots"></i>
 															</button>
-														</Popover>
+														
+														</Popover> */}
 													</div>
 												</div>
 											</div>
