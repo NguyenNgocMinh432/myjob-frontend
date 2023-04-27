@@ -21,6 +21,7 @@ import TypeWork from "../TypeWork/TypeWork";
 import User from "../User/User";
 import Feedbacks from "../Feedback/Feedbacks";
 import CheckCompanyPost from "../CheckCompanyPost/CheckCompanyPost";
+import CheckCV from "../CheckCV/CheckCV";
 export default function Nav() {
 	const match = useRouteMatch();
 	// console.log(match);
@@ -189,6 +190,21 @@ export default function Nav() {
 						>
 							<Link to={`${match.url}/users`}>Cấp quyền</Link>
 						</Menu.Item>
+						{/* Quản lý CV */}
+
+						<Menu.Item
+							key="20"
+							icon={
+								state.collapsed === true ? (
+									<span className="fas fa-user-injured"></span>
+								) : (
+									<span className="fas fa-user-injured mr-2"></span>
+								)
+							}
+						>
+							<Link to={`${match.url}/list-user`}>Quản lý CV</Link>
+						</Menu.Item>
+
 						{/* Góp ý */}
 						<Menu.Item
 							key="12"
@@ -263,6 +279,11 @@ export default function Nav() {
 							</Route>
 							<Route path={`${match.path}/formCV/addFormCV`}>
 								<AddFormCv url={match.url} />
+							</Route>
+							{/* QUản lý CV */}
+							{/* list-user */}
+							<Route exact path={`${match.path}/list-user`}>
+								<CheckCV url={match.url} />
 							</Route>
 							<Route path={`${match.path}/formCV/editFormCV/:id`}>
 								<AddFormCv url={match.url} />

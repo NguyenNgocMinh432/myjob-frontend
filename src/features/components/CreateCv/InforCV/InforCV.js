@@ -141,6 +141,7 @@ export default function InforCV() {
 		// setValue(e);
 	};
 	const handleCreateCV = async() => {
+		const imageCV = localStorage.getItem("avatarCV");
 		if (standard < 7) {
 			message.error("Bạn còn thiếu tiêu chí chưa điền thông tin !!!!");
 		} else {
@@ -157,6 +158,8 @@ export default function InforCV() {
 				certificate: certificate,
 				project: presenters,
 				more: moreInformation,
+				email: user && user.name,
+				imageCV: imageCV
 			}
 			await userApi.userCreateCV(dataSend);
 			history.push("/createCv")
@@ -197,10 +200,10 @@ export default function InforCV() {
 				/> */}
 				<div className="d-flex cursor-pointer">
 					<div className="col-lg-2 d-flex justify-content-center align-items-center">
-						<input type="radio" name="" checked={true} />
-						<span className="p-2 fw-bold">{`${standard}/${
-							listCreateCV.length + 1
-						}`}</span>
+						{/* <input type="radio" name="" checked={true} /> */}
+						{/* <span className="p-2 fw-bold">{`${standard}/${
+							listCreateCV.length 
+						}`}</span> */}
 					</div>
 					<div>
 						<label className="fw-bold">Chọn ảnh đại diện</label>
@@ -250,7 +253,7 @@ export default function InforCV() {
 									checked={item.status === true && true}
 								/>
 								<span className="p-2 fw-bold">{`${standard}/${
-									listCreateCV.length + 1
+									listCreateCV.length
 								}`}</span>
 							</div>
 							<div className="col-lg-10">

@@ -9,6 +9,7 @@ import { useState } from "react";
 import userApi from "../../../../api/userApi";
 import { message } from "antd";
 import workApplyApi from "../../../../api/workApplyApi";
+import { BorderBottomOutlined } from "@ant-design/icons";
 export default function CandidateContent({ data, dataCV, infoCV }) {
 	// Check user đã đăng nhập hay chưa
 	const user = JSON.parse(localStorage.getItem("user"));
@@ -16,6 +17,7 @@ export default function CandidateContent({ data, dataCV, infoCV }) {
 	const [email, setEmail] = useState();
 	const [content, setContent] = useState();
 	const [title, setTitle] = useState();
+	const [date, setDate] = useState();
 	// Xử lý phần sendEmail
 	const handleSendMail =  async(e) => {
 		e.preventDefault();
@@ -24,6 +26,7 @@ export default function CandidateContent({ data, dataCV, infoCV }) {
 				yourEmail: data.email,
 				content_email:content,
 				title,
+				date:date
 				// name
 			}
 			await userApi.userSendMail(dataSendEmail);
@@ -249,6 +252,20 @@ export default function CandidateContent({ data, dataCV, infoCV }) {
 										placeholder="Nội dung mail"
 										value={content}
 										onChange={(e) => setContent(e.target.value)}
+									/>
+									<input
+										type="date"
+										name="content_email"
+										placeholder="Nội dung mail"
+										value={content}
+										style={{
+											width:"100%",
+											height:"40px",
+											marginBottom:"20px",
+											BorderRadius:"15px",
+											padding: "15px"
+										}}
+										onChange={(e) => setDate(e.target.value)}
 									/>
 									<input type="submit" value="Gửi" onClick={handleSendMail}/>
 								</form>

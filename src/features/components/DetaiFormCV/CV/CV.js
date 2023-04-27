@@ -10,7 +10,7 @@ export default function CV({ data }) {
 			userId: user.id,
 			cvId
 		})
-		const resultGetInfoCv = responseGetInfoCv.data
+		const resultGetInfoCv = responseGetInfoCv && responseGetInfoCv.data
 		if (data && document.querySelector("#avatar__cv")) {
 			const getElementAvatar = document.querySelector("#avatar__cv");
 			getElementAvatar.setAttribute(
@@ -42,6 +42,11 @@ export default function CV({ data }) {
 		if (data && document.querySelector("#more__info__cv")) {
 			const getElementAvatar = document.querySelector("#more__info__cv");
 			getElementAvatar.innerHTML = resultGetInfoCv?.more
+		}
+
+		const selectNameUserCv = document.querySelector(".name__user");
+		if(selectNameUserCv) {
+			selectNameUserCv.innerHTML = `<span>${user && user.name}</span>`
 		}
 	}, [data]);
 	return (

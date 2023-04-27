@@ -106,6 +106,21 @@ class UserApi {
         });
     };
 
+    getAllCv = (params) => {
+        const url = "/admin/allCv";
+        return axiosClient.get(url, { params });
+    };
+
+    deletefollows = (params) => {
+        const url = '/admin/deleteCv';
+        return axiosClient.post(url, params).then(data => {
+            message.success("xóa Thành công!!");
+        }).catch(err => {
+            message.error("Có lỗi xảy ra!");
+        });
+    }
+
+
 }
 const userApi = new UserApi();
 export default userApi;

@@ -39,6 +39,9 @@ export default function ListCV({ data, loading }) {
 		);
 		setDataCV(newData);
 	};
+	const handleClickCV = (avatar) => {
+		localStorage.setItem("avatarCV", avatar);
+	}
 	return (
 		<div className="listCv">
 			<div className="heading">
@@ -91,6 +94,7 @@ export default function ListCV({ data, loading }) {
 										<Link
 											to={`/detaiFormCV/${ok.id}`}
 											style={{ width: "100%" }}
+											onClick={() => handleClickCV(ok.avatar)}
 										>
 											<div className="box">
 												<div className="box-img">

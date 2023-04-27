@@ -13,6 +13,7 @@ export default function UserApply({ id }) {
 	useEffect(() => {
 		getApi();
 	}, []);
+	console.log("data", data)
 	return (
 		<div className="ListJob" style={{
 			minHeight: '100vh'

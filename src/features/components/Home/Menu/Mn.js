@@ -111,14 +111,14 @@ export default function Mn(props) {
 		"https://1.bp.blogspot.com/-m3UYn4_PEms/Xnch6mOTHJI/AAAAAAAAZkE/GuepXW9p7MA6l81zSCnmNaFFhfQASQhowCLcBGAsYHQ/s1600/Cach-Lam-Avatar-Dang-Hot%2B%25281%2529.jpg";
 	
 	// item nâng cấp tài khoản
-	const upgrade = (
-		<Menu.Item key="4">
-			<Link to="" onClick={onClickUpgrade}>
-				Nâng cấp tài khoản
-			</Link>
-		</Menu.Item>
+	// const upgrade = (
+	// 	<Menu.Item key="4">
+	// 		<Link to="" onClick={onClickUpgrade}>
+	// 			Nâng cấp tài khoản
+	// 		</Link>
+	// 	</Menu.Item>
 
-	)
+	// )
 	const ss = (
 		<Menu>
 			{!user ? (
@@ -129,7 +129,7 @@ export default function Mn(props) {
 				""
 			)}
 			{user ? (user.type === "company" ? inforCompany : inforUser) : ""}
-			{user? upgrade: "" }
+			{/* {user? upgrade: "" } */}
 			{user ? logOut : ""}
 			
 		</Menu>
